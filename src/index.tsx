@@ -1,6 +1,16 @@
+/*
+ * @Author: D.Y.M
+ * @Date: 2021-10-19 16:43:46
+ * @LastEditTime: 2021-10-19 17:47:50
+ * @FilePath: /otter/src/index.tsx
+ * @Description: 
+ */
 import React from 'react';
+
 import ReactDOM from 'react-dom';
-import './index.css';
+
+import '@/styles/index.less'
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

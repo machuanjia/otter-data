@@ -1,10 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/*
+ * @Author: D.Y.M
+ * @Date: 2021-10-19 16:43:46
+ * @LastEditTime: 2021-10-19 17:51:33
+ * @FilePath: /otter/src/App.tsx
+ * @Description:
+ */
+import React from 'react'
+
+import { Button } from 'antd'
+
+import logo from './logo.svg'
 
 function App() {
   return (
-    <div className="App">
+    <div>
+      <Button>add</Button>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -20,7 +30,7 @@ function App() {
         </a>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
