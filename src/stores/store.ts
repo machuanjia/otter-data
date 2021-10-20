@@ -1,13 +1,13 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 19:07:00
- * @LastEditTime: 2021-10-19 19:10:59
+ * @LastEditTime: 2021-10-20 12:02:03
  * @FilePath: /otter/src/stores/store.ts
  * @Description:
  */
 import { configureStore } from '@reduxjs/toolkit'
 
-import counterReducer from './counterSlice'
+import counterReducer from './counter'
 
 import type { ThunkAction, Action } from '@reduxjs/toolkit'
 
