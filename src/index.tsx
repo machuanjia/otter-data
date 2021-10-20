@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:43:46
- * @LastEditTime: 2021-10-19 19:16:12
+ * @LastEditTime: 2021-10-20 14:22:41
  * @FilePath: /otter/src/index.tsx
  * @Description:
  */
@@ -9,7 +9,7 @@ import React from 'react'
 
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import '@/styles/index.less'
 
@@ -20,7 +20,9 @@ import { store } from './stores'
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),

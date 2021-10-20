@@ -1,13 +1,12 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 19:12:06
- * @LastEditTime: 2021-10-19 19:13:38
- * @FilePath: /otter/src/Counter.tsx
+ * @LastEditTime: 2021-10-20 14:57:39
+ * @FilePath: /otter/src/views/Counter/index.tsx
  * @Description:
  */
 import React, { useState } from 'react'
 
-import styles from './Counter.module.less'
 import {
   decrement,
   increment,
@@ -17,10 +16,12 @@ import {
   selectCount,
   useAppSelector,
   useAppDispatch,
-} from './stores'
+} from '@/stores'
+
+import styles from './index.module.less'
 
 
-export function Counter() {
+export default function Counter() {
   const count = useAppSelector(selectCount)
   const dispatch = useAppDispatch()
   const [incrementAmount, setIncrementAmount] = useState('2')
