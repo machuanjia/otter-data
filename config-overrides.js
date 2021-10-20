@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:48:53
- * @LastEditTime: 2021-10-19 17:40:16
+ * @LastEditTime: 2021-10-20 15:20:46
  * @FilePath: /otter/config-overrides.js
  * @Description:
  */
@@ -16,7 +16,7 @@ const {
   overrideDevServer,
   watchAll,
   fixBabelImports,
-  addPostcssPlugins
+  addPostcssPlugins,
 } = require("customize-cra");
 const path = require("path");
 const getCSSModuleLocalIdent = require("react-dev-utils/getCSSModuleLocalIdent");
