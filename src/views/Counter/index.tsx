@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 19:12:06
- * @LastEditTime: 2021-10-20 14:57:39
+ * @LastEditTime: 2021-10-21 09:23:04
  * @FilePath: /otter/src/views/Counter/index.tsx
  * @Description:
  */
@@ -29,7 +29,7 @@ export default function Counter() {
   const incrementValue = Number(incrementAmount) || 0
 
   return (
-    <div>
+    <div className=" bg-main">
       <div className={styles.row}>
         <button
           className={styles.button}

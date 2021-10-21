@@ -1,11 +1,12 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 11:49:57
- * @LastEditTime: 2021-10-20 19:44:26
+ * @LastEditTime: 2021-10-21 10:08:57
  * @FilePath: /otter/tailwind.config.js
  * @Description:
  */
 const colors = require('./colors')
+const purgecss = require('@fullhuman/postcss-purgecss')
 module.exports = {
   purge: ['./src/**/*.html', './src/**/*.tsx'],
   darkMode: 'class', //false, // or 'media' or 'class'
@@ -42,5 +43,13 @@ module.exports = {
   variants: {
     extend: {},
   },
+  plugins: [
+    require('tailwindcss'),
+    require('autoprefixer'),
+    purgecss({
+      content: ['./layouts/**/*.html', './src/**/*.tsx'],
+      defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
+    })
+  ]
   // plugins: [require('tailwindcss'), require('autoprefixer')],
 }
