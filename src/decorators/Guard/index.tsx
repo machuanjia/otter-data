@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 19:03:31
- * @LastEditTime: 2021-10-20 19:35:30
+ * @LastEditTime: 2021-10-21 10:28:32
  * @FilePath: /otter/src/decorators/Guard/index.tsx
  * @Description:
  */
@@ -30,7 +30,7 @@ export const GuardDecorator = () => (WrappedComponent) => {
       setTimeout(() => {
         this.setState({
           loading: false,
-          props: { ...this.props, permissions: ['counter'] },
+          props: { ...this.props, permissions: ['home','counter'] },
         })
       }, 200)
     }

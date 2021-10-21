@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:43:46
- * @LastEditTime: 2021-10-20 14:22:41
+ * @LastEditTime: 2021-10-21 14:35:00
  * @FilePath: /otter/src/index.tsx
  * @Description:
  */
@@ -11,6 +11,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 
+import '@/i18n'
 import '@/styles/index.less'
 
 import App from './App'
