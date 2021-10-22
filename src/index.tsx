@@ -1,17 +1,18 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:43:46
- * @LastEditTime: 2021-10-21 14:35:00
+ * @LastEditTime: 2021-10-21 15:38:07
  * @FilePath: /otter/src/index.tsx
  * @Description:
  */
 import React from 'react'
 
+import { ConfigProvider } from 'antd'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-import '@/i18n'
+import { getAntdLocal } from '@/i18n'
 import '@/styles/index.less'
 
 import App from './App'
@@ -21,9 +22,11 @@ import { store } from './stores'
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router>
-        <App />
-      </Router>
+      <ConfigProvider locale={getAntdLocal()} componentSize="middle">
+        <Router>
+          <App />
+        </Router>
+      </ConfigProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),

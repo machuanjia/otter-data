@@ -1,0 +1,22 @@
+.nav {
+  @apply w-14 !important;
+  :global {
+    .ant-menu-item,
+    .ant-menu-submenu {
+      @apply flex items-center justify-center h-14 mb-0 mt-0 !important;
+    }
+    .ant-menu-item-selected,
+    .ant-menu-submenu-selected {
+      @apply text-primary bg-hover !important;
+    }
+  }
+  &:hover {
+    :global {
+      .ant-menu-item-active,
+      .ant-menu-submenu-active,
+      .ant-menu-submenu-title:hover {
+        @apply text-primary !important;
+      }
+    }
+  }
+}

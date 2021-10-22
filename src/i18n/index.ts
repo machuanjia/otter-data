@@ -1,16 +1,35 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:03:22
- * @LastEditTime: 2021-10-21 10:28:56
+ * @LastEditTime: 2021-10-21 15:36:25
  * @FilePath: /otter/src/i18n/index.ts
  * @Description:
  */
+import enUS from 'antd/lib/locale/en_US'
+import zhCN from 'antd/lib/locale/zh_CN'
 import i18n from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
 
 import enUsTrans from './locales/en-us.json'
 import zhCnTrans from './locales/zh-cn.json'
+
+const ANTD_LOCAL_MAP = {
+  en: enUS,
+  zh: zhCN,
+}
+
+export const getLanguage = () => {
+  const i18nextLng = localStorage.getItem('i18nextLng')
+  if (i18nextLng) {
+    return i18nextLng
+  }
+  return 'zh'
+}
+
+export const getAntdLocal = () => {
+  return ANTD_LOCAL_MAP[getLanguage()]
+}
 
 i18n
   .use(LanguageDetector) //嗅探当前浏览器语言

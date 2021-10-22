@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 11:49:57
- * @LastEditTime: 2021-10-21 10:08:57
+ * @LastEditTime: 2021-10-21 16:33:32
  * @FilePath: /otter/tailwind.config.js
  * @Description:
  */
@@ -27,6 +27,8 @@ module.exports = {
       main: 'var(--color-bg-main)',
       input: 'var(--color-bg-input)',
       disable: 'var(--color-bg-disable)',
+      primary: 'var(--color-bg-primary)',
+      hover: 'var(--color-bg-hover)'
     },
     textColor: {
       white: 'var(--color-text-white)',
