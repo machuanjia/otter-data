@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:03:39
- * @LastEditTime: 2021-10-20 19:16:58
+ * @LastEditTime: 2021-10-25 15:57:47
  * @FilePath: /otter/src/routes/index.tsx
  * @Description:
  */
@@ -10,6 +10,9 @@ import { lazy, Suspense } from 'react'
 
 import { filter } from 'lodash'
 import { Route, Switch } from 'react-router-dom'
+
+import { useAppSelector } from '@/stores'
+import { selectPermissions } from '@/stores/app'
 
 import asyncRoutes from './async'
 import staticRoutes from './static'
@@ -41,8 +44,8 @@ export const StaticRoutes = () => {
   )
 }
 
-export const AsyncRoutes = (props: { permissions: string[] }) => {
-  const { permissions } = props
+export const AsyncRoutes = () => {
+  const permissions = useAppSelector(selectPermissions)
   const routes = filter(asyncRoutes, (n) => {
     return permissions.includes(n?.meta?.permission)
   })

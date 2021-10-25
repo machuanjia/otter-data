@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 16:35:49
- * @LastEditTime: 2021-10-21 17:07:28
+ * @LastEditTime: 2021-10-25 15:57:40
  * @FilePath: /otter/src/layouts/Main/index.tsx
  * @Description:
  */
@@ -26,7 +26,6 @@ type IState = Record<string, unknown>
 @GuardDecorator()
 class Main extends Component<IProps, IState> {
   render() {
-    const { permissions } = this.props
     return (
       <section className="h-screen flex flex-row">
         <nav className={`${styles['main-nav']} flex flex-col items-center`}>
@@ -44,7 +43,7 @@ class Main extends Component<IProps, IState> {
           </footer>
         </nav>
         <div className="flex-1">
-          <AsyncRoutes permissions={permissions} />
+          <AsyncRoutes />
         </div>
       </section>
     )

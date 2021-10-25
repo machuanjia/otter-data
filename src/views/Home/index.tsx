@@ -1,20 +1,20 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 13:57:38
- * @LastEditTime: 2021-10-21 14:48:01
+ * @LastEditTime: 2021-10-25 16:03:12
  * @FilePath: /otter/src/views/Home/index.tsx
  * @Description:
  */
-import React, { Component } from 'react'
+import React from 'react'
 
-import i18n from 'i18next';
+import { useAppSelector } from '@/stores'
+import { selectPermissions } from '@/stores/app'
 
-// import { PageDecorator } from '@/decorators'
-// @PageDecorator()
-class Home extends Component {
-  render() {
-    return <>home- {i18n.t('home')} - </>
-  }
+// import i18n from 'i18next';
+
+const Home = () => {
+  const permissions = useAppSelector(selectPermissions)
+  return <div>home,{permissions}</div>
 }
 
 export default Home

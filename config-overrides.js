@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:48:53
- * @LastEditTime: 2021-10-20 15:20:46
+ * @LastEditTime: 2021-10-25 15:18:32
  * @FilePath: /otter/config-overrides.js
  * @Description:
  */
@@ -19,6 +19,7 @@ const {
   addPostcssPlugins,
 } = require("customize-cra");
 const path = require("path");
+const apiMocker = require('mocker-api')
 const getCSSModuleLocalIdent = require("react-dev-utils/getCSSModuleLocalIdent");
 const getStyleLoaders = (cssOptions, preProcessor, lessOptions) => {
   // 这个是use里要设置的，封装了下
@@ -57,6 +58,16 @@ const getStyleLoaders = (cssOptions, preProcessor, lessOptions) => {
   }
   return loaders;
 };
+const devConfig = () => {
+  return (config) => {
+    return {
+      ...config,
+      before(app) {
+        apiMocker(app, path.resolve(__dirname, './mock/index.js'))
+      }
+    }
+  }
+}
 module.exports = {
   webpack: override(
     // enable legacy decorators babel plugin
@@ -117,6 +128,7 @@ module.exports = {
   ),
   devServer: overrideDevServer(
     // dev server plugin
+    devConfig(),
     watchAll()
   ),
 };
