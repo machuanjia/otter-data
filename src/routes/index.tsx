@@ -1,18 +1,18 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:03:39
- * @LastEditTime: 2021-10-25 15:57:47
+ * @LastEditTime: 2021-10-25 17:21:55
  * @FilePath: /otter/src/routes/index.tsx
  * @Description:
  */
 
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 
-import { filter } from 'lodash'
+import { filter, map } from 'lodash'
 import { Route, Switch } from 'react-router-dom'
 
-import { useAppSelector } from '@/stores'
-import { selectPermissions } from '@/stores/app'
+import { useAppDispatch, useAppSelector } from '@/stores'
+import { selectPermissions, setRoutes } from '@/stores/app'
 
 import asyncRoutes from './async'
 import staticRoutes from './static'
@@ -46,9 +46,19 @@ export const StaticRoutes = () => {
 
 export const AsyncRoutes = () => {
   const permissions = useAppSelector(selectPermissions)
+  const dispatch = useAppDispatch()
   const routes = filter(asyncRoutes, (n) => {
     return permissions.includes(n?.meta?.permission)
   })
+  useEffect(() => {
+    dispatch(
+      setRoutes(
+        map(routes, (n) => {
+          return { path: n.path, meta: n.meta }
+        }),
+      ),
+    )
+  }, [])
   return (
     <Suspense fallback={<div style={{ height: '300px', background: 'red' }}>loading</div>}>
       {generateRoutes(routes)}

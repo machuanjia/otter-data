@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:43:46
- * @LastEditTime: 2021-10-21 14:39:56
+ * @LastEditTime: 2021-10-25 17:06:42
  * @FilePath: /otter/src/App.tsx
  * @Description:
  */
@@ -14,12 +14,7 @@ import { StaticRoutes } from '@/routes'
 
 function App() {
   return (
-    <>
-    {/* <Button>sdsdsd</Button>
-      <Link to="/home">home</Link>
-      <Link to="/counter">counter</Link> */}
-      <StaticRoutes />
-    </>
+    <StaticRoutes />
   )
 }
 

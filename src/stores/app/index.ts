@@ -1,13 +1,15 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 19:09:37
- * @LastEditTime: 2021-10-25 15:53:23
+ * @LastEditTime: 2021-10-25 17:18:20
  * @FilePath: /otter/src/stores/app/index.ts
  * @Description:
  */
+
 import { createSlice } from '@reduxjs/toolkit'
 
 import { STATUS } from '@/constants'
+import type { IRoute } from '@/models'
 
 import AppService from './app.service'
 
@@ -16,22 +18,25 @@ import type { RootState } from '../store'
 export interface AppState {
   value: number
   permissions: string[],
-  status: STATUS.IDLE | STATUS.LOADING | STATUS.FAILED
+  status: STATUS.IDLE | STATUS.LOADING | STATUS.FAILED,
+  routes: IRoute[]
 }
 
 const initialState: AppState = {
   value: 0,
   permissions: [],
   status: STATUS.LOADING,
+  routes: []
 }
 
 export const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    // incrementByAmount: (state, action: PayloadAction<number>) => {
-    //   state.value += action.payload
-    // },
+    setRoutes: (state, action) => {
+      console.log(action.payload)
+      state.routes = action.payload
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -39,11 +44,14 @@ export const appSlice = createSlice({
         state.status = STATUS.LOADING
       })
       .addCase(AppService.getInfo.fulfilled, (state, action) => {
-        state.status = STATUS.IDLE
         // @ts-ignore
         state.permissions = action.payload.permissions
+        state.status = STATUS.IDLE
       })
   },
 })
+export const { setRoutes } = appSlice.actions
 export const selectPermissions = (state: RootState) => state.app.permissions
+export const selectRoutes = (state: RootState) => state.app.routes
+export const selectStatus = (state: RootState) => state.app.status
 export default appSlice.reducer
