@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 19:09:37
- * @LastEditTime: 2021-10-25 17:18:20
+ * @LastEditTime: 2021-10-25 17:51:21
  * @FilePath: /otter/src/stores/app/index.ts
  * @Description:
  */
@@ -34,7 +34,6 @@ export const appSlice = createSlice({
   initialState,
   reducers: {
     setRoutes: (state, action) => {
-      console.log(action.payload)
       state.routes = action.payload
     },
   },

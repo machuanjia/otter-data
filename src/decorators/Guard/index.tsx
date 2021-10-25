@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 19:03:31
- * @LastEditTime: 2021-10-25 16:01:17
+ * @LastEditTime: 2021-10-25 17:51:11
  * @FilePath: /otter/src/decorators/Guard/index.tsx
  * @Description:
  */
@@ -33,7 +33,6 @@ export const GuardDecorator = () => (WrappedComponent) => {
   @connect(mapStateToProps, mapDispatchToProps)
   class Guard extends Component<IProps, IState> {
     componentDidMount() {
-      console.log('1')
       // @ts-ignore
       const { getInfo } = this.props
       getInfo()

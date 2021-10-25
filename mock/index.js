@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-25 15:10:01
- * @LastEditTime: 2021-10-25 15:53:55
+ * @LastEditTime: 2021-10-25 18:09:05
  * @FilePath: /otter/mock/index.js
  * @Description: 
  */
@@ -14,7 +14,7 @@ const proxy = {
       name: 'zs',
       username: 'kenny',
       sex: 6,
-      permissions:['counter','home']
+      permissions:['counter*','counter*.counter','home']
     }
   }
 }
