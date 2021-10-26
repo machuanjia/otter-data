@@ -1,8 +1,8 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:48:53
- * @LastEditTime: 2021-10-25 19:16:47
- * @FilePath: /otter/config-overrides.js
+ * @LastEditTime: 2021-10-26 09:40:34
+ * @FilePath: /otter-data/config-overrides.js
  * @Description:
  */
 const {
@@ -58,8 +58,15 @@ const getStyleLoaders = (cssOptions, preProcessor, lessOptions) => {
   }
   return loaders
 }
+const { name } = require('./package');
 const devConfig = () => {
   return (config) => {
+    config.headers = config.headers || {}
+    config.headers['Access-Control-Allow-Origin'] = '*'
+    config.historyApiFallback = true;
+    config.hot = false;
+    config.watchContentBase = false;
+    config.liveReload = false;
     return {
       ...config,
       before(app) {
@@ -104,6 +111,11 @@ module.exports = {
       }),
     ),
     (config) => {
+      config.output = config.output || {}
+      config.output.library = `${name}-[name]`;
+      config.output.libraryTarget = 'umd';
+      config.output.jsonpFunction = `webpackJsonp_${name}`;
+      config.output.globalObject = 'window';
       const oneOf_loc = config.module.rules.findIndex((n) => n.oneOf) // 这里的config是全局的
       config.module.rules[oneOf_loc].oneOf = [
         {
