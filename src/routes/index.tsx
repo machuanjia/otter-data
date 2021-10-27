@@ -1,16 +1,18 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:03:39
- * @LastEditTime: 2021-10-25 18:09:21
- * @FilePath: /otter/src/routes/index.tsx
+ * @LastEditTime: 2021-10-27 15:22:02
+ * @FilePath: /otter-data/src/routes/index.tsx
  * @Description:
  */
 
-import { lazy, Suspense, useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 
 import { compact } from 'lodash'
+import { NotFond } from 'otter-pro'
 import { Route, Switch } from 'react-router-dom'
 
+import { ProcessLoading } from '@/components'
 import type { IRoute } from '@/models'
 import { useAppDispatch, useAppSelector } from '@/stores'
 import { selectPermissions, setRoutes } from '@/stores/app'
@@ -32,7 +34,7 @@ export const generateRoutes = (routes: any, extraProps = {}, switchProps = {}) =
           }}
         />
       ))}
-      <Route component={lazy(() => import('@/components/404'))} />
+      <Route component={NotFond} />
     </Switch>
   ) : null
 }
@@ -43,7 +45,7 @@ export const RouteViewer = ({ routers }) => {
 
 export const StaticRoutes = () => {
   return (
-    <Suspense fallback={<div style={{ height: '300px', background: 'red' }}>loading</div>}>
+    <Suspense fallback={<ProcessLoading />}>
       {generateRoutes(staticRoutes)}
     </Suspense>
   )
@@ -99,7 +101,7 @@ export const AsyncRoutes = () => {
     dispatch(setRoutes(permissionNavs))
   }, [])
   return (
-    <Suspense fallback={<div style={{ height: '300px', background: 'red' }}>loading</div>}>
+    <Suspense fallback={<ProcessLoading />}>
       {generateRoutes(routes)}
     </Suspense>
   )

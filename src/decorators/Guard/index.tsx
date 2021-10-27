@@ -1,16 +1,17 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 19:03:31
- * @LastEditTime: 2021-10-25 17:51:11
- * @FilePath: /otter/src/decorators/Guard/index.tsx
+ * @LastEditTime: 2021-10-27 15:45:59
+ * @FilePath: /otter-data/src/decorators/Guard/index.tsx
  * @Description:
  */
 
 import React, { Component } from 'react'
 
+import { GlobalLoading } from 'otter-pro'
+import { STATUS } from 'otter-pro'
 import { connect } from 'react-redux'
 
-import { STATUS } from '@/constants'
 import AppService from '@/stores/app/app.service'
 
 type IProps = {
@@ -39,8 +40,8 @@ export const GuardDecorator = () => (WrappedComponent) => {
     }
     render() {
       // @ts-ignore
-      const { status, props } = this.props
-      return <>{status !== STATUS.IDLE ? <>loading</> : <WrappedComponent {...props} />}</>
+      const { status } = this.props
+      return <>{status !== STATUS.IDLE ? <div className=" h-full w-full flex justify-center items-center absolute"><GlobalLoading description="卓越、有爱" className=""/></div> : <WrappedComponent {...this.props} />}</>
     }
   }
   return Guard

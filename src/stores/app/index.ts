@@ -1,14 +1,14 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 19:09:37
- * @LastEditTime: 2021-10-25 17:51:21
- * @FilePath: /otter/src/stores/app/index.ts
+ * @LastEditTime: 2021-10-27 15:46:05
+ * @FilePath: /otter-data/src/stores/app/index.ts
  * @Description:
  */
 
 import { createSlice } from '@reduxjs/toolkit'
+import { STATUS } from 'otter-pro'
 
-import { STATUS } from '@/constants'
 import type { IRoute } from '@/models'
 
 import AppService from './app.service'

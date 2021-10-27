@@ -1,8 +1,8 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 16:12:45
- * @LastEditTime: 2021-10-25 18:10:00
- * @FilePath: /otter/src/routes/async.tsx
+ * @LastEditTime: 2021-10-27 14:55:39
+ * @FilePath: /otter-data/src/routes/async.tsx
  * @Description:
  */
 import { lazy } from 'react'
@@ -10,38 +10,58 @@ import { lazy } from 'react'
 // import i18n from 'i18next'
 
 const routes = [
+  // {
+  //   path: '/counter',
+  //   meta: {
+  //     key: 'Counter',
+  //     name: '计数器',
+  //     icon: '',
+  //     permission: 'counter*',
+  //   },
+  //   component: lazy(() => import('@/layouts/Route')),
+  //   children: [
+  //     {
+  //       path: '/counter/index',
+  //       meta: {
+  //         key: 'Counter.counter',
+  //         name: 'home',
+  //         icon: '',
+  //         permission: 'counter*.counter',
+  //       },
+  //       component: lazy(() => import('@/views/Counter')),
+  //     },
+  //   ],
+  // },
   {
-    path: '/counter',
+    path: '/lake',
     meta: {
-      key: 'Counter',
-      name: '计数器',
+      key: 'Lake',
+      name: 'lake',
       icon: '',
-      permission: 'counter*',
+      permission: 'dataLake*',
     },
-    component:lazy(() => import('@/layouts/Route')),
-    children: [
-      {
-        path: '/counter/index',
-        meta: {
-          key: 'Counter.counter',
-          name: 'home',
-          icon: '',
-          permission: 'counter*.counter',
-        },
-        component: lazy(() => import('@/views/Counter')),
-      },
-    ],
+    component: lazy(() => import('@/views/Lake')),
   },
   {
-    path: '/home',
+    path: '/set',
     meta: {
-      key: 'Home',
-      name: 'home',
+      key: 'Set',
+      name: 'set',
       icon: '',
-      permission: 'home',
+      permission: 'dataSet*',
     },
-    component: lazy(() => import('@/views/Home')),
-  },
+    component: lazy(() => import('@/views/Set')),
+  }, {
+
+    path: '/remark',
+    meta: {
+      key: 'Remark',
+      name: 'remark',
+      icon: '',
+      permission: 'dataRemark*',
+    },
+    component: lazy(() => import('@/views/Remark')),
+  }
 ]
 
 export default routes
