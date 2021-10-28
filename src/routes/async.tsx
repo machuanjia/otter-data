@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 16:12:45
- * @LastEditTime: 2021-10-27 14:55:39
+ * @LastEditTime: 2021-10-28 19:10:32
  * @FilePath: /otter-data/src/routes/async.tsx
  * @Description:
  */
@@ -18,7 +18,7 @@ const routes = [
   //     icon: '',
   //     permission: 'counter*',
   //   },
-  //   component: lazy(() => import('@/layouts/Route')),
+  //   component: lazy(() => import('@/layouts/Normal')),
   //   children: [
   //     {
   //       path: '/counter/index',
@@ -50,9 +50,21 @@ const routes = [
       icon: '',
       permission: 'dataSet*',
     },
-    component: lazy(() => import('@/views/Set')),
-  }, {
-
+    component: lazy(() => import('@/layouts/Normal')),
+    children: [
+      {
+        path: '/set/index',
+        meta: {
+          key: 'SetIndex',
+          name: 'set',
+          icon: '',
+          permission: 'dataSet*',
+        },
+        component: lazy(() => import('@/views/Set')),
+      },
+    ],
+  },
+  {
     path: '/remark',
     meta: {
       key: 'Remark',
@@ -61,7 +73,7 @@ const routes = [
       permission: 'dataRemark*',
     },
     component: lazy(() => import('@/views/Remark')),
-  }
+  },
 ]
 
 export default routes

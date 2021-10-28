@@ -1,9 +1,11 @@
 // import { useAppSelector } from '@/stores'
 
+import { RouteViewer } from '@/routes'
+
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-28 16:10:58
- * @LastEditTime: 2021-10-28 17:47:39
+ * @LastEditTime: 2021-10-28 19:08:51
  * @FilePath: /otter-data/src/layouts/Normal/index.tsx
  * @Description:
  */
@@ -14,7 +16,9 @@ const NormalLayout = (props) => {
         {/* {currentRoute?.meta?.name} */}
         sss
       </header>
-      <div>{props?.children}</div>
+      <div>
+        <RouteViewer routers={props.route.children} />{' '}
+      </div>
     </section>
   )
 }
