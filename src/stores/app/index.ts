@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 19:09:37
- * @LastEditTime: 2021-10-28 17:45:15
+ * @LastEditTime: 2021-10-28 19:55:55
  * @FilePath: /otter-data/src/stores/app/index.ts
  * @Description:
  */
@@ -17,16 +17,18 @@ import type { RootState } from '../store'
 
 export interface AppState {
   value: number
-  permissions: string[],
-  status: STATUS.IDLE | STATUS.LOADING | STATUS.FAILED,
+  permissions: string[]
+  status: STATUS.IDLE | STATUS.LOADING | STATUS.FAILED
   routes: IRoute[]
+  currentRoute: IRoute
 }
 
 const initialState: AppState = {
   value: 0,
   permissions: [],
   status: STATUS.LOADING,
-  routes: []
+  routes: [],
+  currentRoute: null,
 }
 
 export const appSlice = createSlice({
@@ -35,6 +37,9 @@ export const appSlice = createSlice({
   reducers: {
     setRoutes: (state, action) => {
       state.routes = action.payload
+    },
+    setCurrentRoute: (state, action) => {
+      state.currentRoute = action.payload
     },
   },
   extraReducers: (builder) => {
@@ -49,8 +54,9 @@ export const appSlice = createSlice({
       })
   },
 })
-export const { setRoutes } = appSlice.actions
+export const { setRoutes, setCurrentRoute } = appSlice.actions
 export const selectAppPermissions = (state: RootState) => state.app.permissions
-export const selectAPpRoutes = (state: RootState) => state.app.routes
+export const selectAppRoutes = (state: RootState) => state.app.routes
+export const selectAppCurrentRoute = (state: RootState) => state.app.currentRoute
 export const selectAppStatus = (state: RootState) => state.app.status
 export default appSlice.reducer
