@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:03:39
- * @LastEditTime: 2021-10-27 15:22:02
+ * @LastEditTime: 2021-10-28 17:45:23
  * @FilePath: /otter-data/src/routes/index.tsx
  * @Description:
  */
@@ -15,7 +15,7 @@ import { Route, Switch } from 'react-router-dom'
 import { ProcessLoading } from '@/components'
 import type { IRoute } from '@/models'
 import { useAppDispatch, useAppSelector } from '@/stores'
-import { selectPermissions, setRoutes } from '@/stores/app'
+import { selectAppPermissions, setRoutes } from '@/stores/app'
 
 import asyncRoutes from './async'
 import staticRoutes from './static'
@@ -91,7 +91,7 @@ export const getFlattenRoutes = (routeList: IRoute[], flattenRoutes: IRoute[]) =
   })
 }
 export const AsyncRoutes = () => {
-  const permissions = useAppSelector(selectPermissions)
+  const permissions = useAppSelector(selectAppPermissions)
   const dispatch = useAppDispatch()
   const permissionRouters = getPermissionsRouters(asyncRoutes, permissions)
   const permissionNavs = filterProps(permissionRouters)

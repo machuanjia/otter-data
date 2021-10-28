@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 19:09:37
- * @LastEditTime: 2021-10-27 15:46:05
+ * @LastEditTime: 2021-10-28 17:45:15
  * @FilePath: /otter-data/src/stores/app/index.ts
  * @Description:
  */
@@ -50,7 +50,7 @@ export const appSlice = createSlice({
   },
 })
 export const { setRoutes } = appSlice.actions
-export const selectPermissions = (state: RootState) => state.app.permissions
-export const selectRoutes = (state: RootState) => state.app.routes
-export const selectStatus = (state: RootState) => state.app.status
+export const selectAppPermissions = (state: RootState) => state.app.permissions
+export const selectAPpRoutes = (state: RootState) => state.app.routes
+export const selectAppStatus = (state: RootState) => state.app.status
 export default appSlice.reducer

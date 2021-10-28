@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y
  * @Date: 2021-01-07 10:05:34
- * @LastEditTime: 2021-10-27 15:42:54
+ * @LastEditTime: 2021-10-28 11:21:16
  * @LastEditors: Please set LastEditors
  * @FilePath: /otter-data/src/utils/request.ts
  * @Description: http
@@ -11,7 +11,7 @@
 import { getRequest } from 'otter-pro'
 
 export default getRequest({
-  baseURL: '/api',//APP_CONFIGRATION.api,
+  baseURL: '/api/v1',//APP_CONFIGRATION.api,
   // @ts-ignore
   requestAction: (config: any) => {
     config.headers.authorization = `Bearer 11111111212121`
