@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:43:46
- * @LastEditTime: 2021-10-26 09:54:36
+ * @LastEditTime: 2021-10-29 15:45:56
  * @FilePath: /otter-data/src/index.tsx
  * @Description:
  */
@@ -29,7 +29,6 @@ function render(props) {
   const { container } = props
   // @ts-ignore
   const baseName = window.__POWERED_BY_QIANKUN__ ? '/data' : '/'
-  console.log(baseName)
   ReactDOM.render(
       <Provider store={store}>
         <ConfigProvider locale={getAntdLocal()} componentSize="middle">
@@ -51,7 +50,19 @@ export async function bootstrap() {
 }
 
 export async function mount(props) {
-  console.log('[react16] props from main framework', props)
+  // console.log('[react16] props from main framework', props)
+  console.log("====",props)
+  props.onGlobalStateChange((state: any, prev: any) => {
+    // state: 变更后的状态; prev 变更前的状态
+    // eslint-disable-next-line no-debugger
+    console.log('pherusa:', state, prev)
+  },true)
+
+  props.setGlobalState({
+    name:'plot'
+  });
+
+
   render(props)
 }
 
