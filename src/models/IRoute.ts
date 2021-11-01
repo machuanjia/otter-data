@@ -1,8 +1,8 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-25 16:06:15
- * @LastEditTime: 2021-10-25 18:05:57
- * @FilePath: /otter/src/models/IRoute.ts
+ * @LastEditTime: 2021-11-01 14:37:20
+ * @FilePath: /otter-data/src/models/IRoute.ts
  * @Description: 
  */
 
@@ -15,6 +15,6 @@ export interface IRoute {
         icon: string,
         permission: string,
     },
-    component: React.LazyExoticComponent<() => JSX.Element>
+    component?: React.LazyExoticComponent<() => JSX.Element>
     children?: IRoute[]
 }

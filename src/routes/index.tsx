@@ -1,23 +1,21 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:03:39
- * @LastEditTime: 2021-10-28 17:45:23
+ * @LastEditTime: 2021-11-01 14:32:53
  * @FilePath: /otter-data/src/routes/index.tsx
  * @Description:
  */
 
-import { Suspense, useEffect } from 'react'
+import { Suspense } from 'react'
 
 import { compact } from 'lodash'
-import { NotFond } from 'otter-pro'
+import { NotFond, NoPermission } from 'otter-pro'
 import { Route, Switch } from 'react-router-dom'
 
 import { ProcessLoading } from '@/components'
 import type { IRoute } from '@/models'
-import { useAppDispatch, useAppSelector } from '@/stores'
-import { selectAppPermissions, setRoutes } from '@/stores/app'
+import { store } from '@/stores'
 
-import asyncRoutes from './async'
 import staticRoutes from './static'
 
 export const generateRoutes = (routes: any, extraProps = {}, switchProps = {}) => {
@@ -30,7 +28,13 @@ export const generateRoutes = (routes: any, extraProps = {}, switchProps = {}) =
           exact={route.exact}
           strict={route.strict}
           render={(props) => {
-            return <route.component {...props} {...extraProps} route={route} />
+            if (
+              !route.meta.permission ||
+              store.getState().app.permissions.includes(route.meta.permission)
+            ) {
+              return <route.component {...props} {...extraProps} route={route} />
+            }
+            return <Route component={NoPermission} />
           }}
         />
       ))}
@@ -39,36 +43,12 @@ export const generateRoutes = (routes: any, extraProps = {}, switchProps = {}) =
   ) : null
 }
 
-export const RouteViewer = ({ routers }) => {
-  return <>{generateRoutes(routers)}</>
-}
-
-export const StaticRoutes = () => {
-  return (
-    <Suspense fallback={<ProcessLoading />}>
-      {generateRoutes(staticRoutes)}
-    </Suspense>
-  )
-}
-const filterProps = (menus) => {
+export const getPermissionsRouters = (menus, permissions) => {
   if (menus && menus.length > 0) {
-    return menus.map((item) => {
+    return compact(menus.map((item) => {
       const { path, meta, children } = item
-      if (children && children.length > 0) {
-        return { path, meta, children: filterProps(children) }
-      }
-      return { path, meta }
-    })
-  }
-  return []
-}
-
-const getPermissionsRouters = (menus, permissions) => {
-  if (menus && menus.length > 0) {
-    return menus.map((item) => {
-      const { path, meta, component, children } = item
       if (permissions.includes(meta.permission)) {
-        const nav: IRoute = { path, meta, component }
+        const nav: IRoute = { path, meta }
         if (children && children.length > 0) {
           const childList = compact(getPermissionsRouters(children, permissions))
           // @ts-ignore
@@ -78,31 +58,15 @@ const getPermissionsRouters = (menus, permissions) => {
         }
         return nav
       }
-    })
+    }))
   }
   return []
 }
-export const getFlattenRoutes = (routeList: IRoute[], flattenRoutes: IRoute[]) => {
-  routeList.forEach((route) => {
-    flattenRoutes.push(route)
-    if (route.children) {
-      getFlattenRoutes(route.children, flattenRoutes)
-    }
-  })
+
+export const RouteViewer = ({ routers }) => {
+  return <>{generateRoutes(routers)}</>
 }
-export const AsyncRoutes = () => {
-  const permissions = useAppSelector(selectAppPermissions)
-  const dispatch = useAppDispatch()
-  const permissionRouters = getPermissionsRouters(asyncRoutes, permissions)
-  const permissionNavs = filterProps(permissionRouters)
-  const routes = []
-  getFlattenRoutes(permissionRouters, routes)
-  useEffect(() => {
-    dispatch(setRoutes(permissionNavs))
-  }, [])
-  return (
-    <Suspense fallback={<ProcessLoading />}>
-      {generateRoutes(routes)}
-    </Suspense>
-  )
+
+export const StaticRoutes = () => {
+  return <Suspense fallback={<ProcessLoading />}>{generateRoutes(staticRoutes)}</Suspense>
 }

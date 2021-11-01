@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 16:12:45
- * @LastEditTime: 2021-11-01 14:21:31
+ * @LastEditTime: 2021-11-01 15:22:48
  * @FilePath: /otter-data/src/routes/async.tsx
  * @Description:
  */
@@ -37,17 +37,17 @@ const routes = [
     path: '/lake',
     meta: {
       key: 'Lake',
-      name: 'lake',
-      icon: '',
+      name: i18n.t('lake'),
+      icon: <DatabaseOutlined />,
       permission: 'dataLake*',
     },
     component: lazy(() => import('@/layouts/Normal')),
     children: [{
       path: '/lake/index',
       meta: {
-        key: 'Lake',
-        name: 'lake',
-        icon: '',
+        key: 'LakeIndex',
+        name: i18n.t('lake'),
+        icon: <DatabaseOutlined />,
         permission: 'dataLake*',
       },
       component: lazy(() => import('@/views/Lake')),
@@ -85,11 +85,11 @@ const routes = [
     },
     component: lazy(() => import('@/layouts/Normal')),
     children: [{
-      path: '/remark',
+      path: '/remark/index',
       meta: {
-        key: 'Remark',
-        name: 'remark',
-        icon: '',
+        key: 'RemarkIndex',
+        name: i18n.t('remark'),
+        icon: <DatabaseOutlined />,
         permission: 'dataRemark*',
       },
       component: lazy(() => import('@/views/Remark')),

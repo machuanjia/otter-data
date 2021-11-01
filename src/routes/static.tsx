@@ -1,11 +1,13 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 15:49:54
- * @LastEditTime: 2021-10-27 15:26:02
+ * @LastEditTime: 2021-11-01 14:31:55
  * @FilePath: /otter-data/src/routes/static.tsx
  * @Description:
  */
 import { lazy } from 'react'
+
+import asyncRoute from './async'
 
 // import i18n from 'i18next'
 
@@ -18,6 +20,7 @@ const routes = [
       isHidden: true,
     },
     component: lazy(() => import('@/layouts/Main')),
+    children: asyncRoute,
   },
 ]
 

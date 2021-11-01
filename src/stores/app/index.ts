@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 19:09:37
- * @LastEditTime: 2021-10-28 19:55:55
+ * @LastEditTime: 2021-11-01 15:01:45
  * @FilePath: /otter-data/src/stores/app/index.ts
  * @Description:
  */
@@ -50,6 +50,7 @@ export const appSlice = createSlice({
       .addCase(AppService.getInfo.fulfilled, (state, action) => {
         // @ts-ignore
         state.permissions = action.payload.permissions
+        state.routes = action.payload.routes
         state.status = STATUS.IDLE
       })
   },
