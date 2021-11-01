@@ -1,13 +1,14 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 16:12:45
- * @LastEditTime: 2021-10-29 18:15:17
+ * @LastEditTime: 2021-11-01 14:21:31
  * @FilePath: /otter-data/src/routes/async.tsx
  * @Description:
  */
 import { lazy } from 'react'
 
-// import i18n from 'i18next'
+import { DatabaseOutlined } from '@ant-design/icons'
+import i18n from 'i18next'
 
 const routes = [
   // {
@@ -56,8 +57,8 @@ const routes = [
     path: '/set',
     meta: {
       key: 'Set',
-      name: 'set',
-      icon: '',
+      name: i18n.t('set'),
+      icon: <DatabaseOutlined />,
       permission: 'dataSet*',
     },
     component: lazy(() => import('@/layouts/Normal')),
@@ -66,8 +67,8 @@ const routes = [
         path: '/set/index',
         meta: {
           key: 'SetIndex',
-          name: 'set',
-          icon: '',
+          name: i18n.t('set'),
+          icon: <DatabaseOutlined />,
           permission: 'dataSet*',
         },
         component: lazy(() => import('@/views/Set')),

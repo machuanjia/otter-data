@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 16:35:49
- * @LastEditTime: 2021-10-28 19:34:27
+ * @LastEditTime: 2021-11-01 14:24:46
  * @FilePath: /otter-data/src/layouts/Main/index.tsx
  * @Description:
  */
@@ -12,9 +12,6 @@ import { AsyncRoutes } from '@/routes'
 
 @GuardDecorator()
 class Main extends Component {
-
-  
-
   render() {
     return <>
       <section className="h-screen flex flex-row">

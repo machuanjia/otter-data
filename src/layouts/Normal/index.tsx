@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-28 16:10:58
- * @LastEditTime: 2021-10-28 20:04:12
+ * @LastEditTime: 2021-11-01 14:21:08
  * @FilePath: /otter-data/src/layouts/Normal/index.tsx
  * @Description:
  */
@@ -20,7 +20,7 @@ type IState = {
 }
 //@ts-ignore
 @RouteDecorator()
-class NormalLayout extends Component<IProp,IState> {
+class NormalLayout extends Component<IProp, IState> {
   subCurrent: any
   constructor(props) {
     super(props)
@@ -46,7 +46,7 @@ class NormalLayout extends Component<IProp,IState> {
     const { current } = this.state
     return (
       <section>
-        <header className=" border-b border-solid border-divider p-4">{current?.meta?.name}</header>
+        <header className=" border-b border-solid border-divider p-4">{current?.meta?.icon}{current?.meta?.name}</header>
         <div>
           <RouteViewer routers={route.children} />{' '}
         </div>
