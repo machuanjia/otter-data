@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-28 16:10:58
- * @LastEditTime: 2021-11-01 14:59:46
+ * @LastEditTime: 2021-11-02 11:33:57
  * @FilePath: /otter-data/src/layouts/Normal/index.tsx
  * @Description:
  */
@@ -11,6 +11,8 @@ import { RouteDecorator } from '@/decorators'
 import type { IRoute } from '@/models'
 import { RouteViewer } from '@/routes'
 import { store } from '@/stores'
+
+import icons from './../icons'
 
 type IProp = {
   route: IRoute
@@ -46,7 +48,10 @@ class NormalLayout extends Component<IProp, IState> {
     const { current } = this.state
     return (
       <section>
-        <header className=" border-b border-solid border-divider p-4">{current?.meta?.icon}{current?.meta?.name}</header>
+        <header className=" border-b border-solid border-divider p-4 text-secondary">
+          {current?.meta?.icon && <span className=" mr-1">{icons[current?.meta?.icon]}</span>}
+          {current?.meta?.name}
+        </header>
         <div>
           <RouteViewer routers={route.children} />
         </div>

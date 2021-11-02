@@ -1,13 +1,12 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 16:12:45
- * @LastEditTime: 2021-11-01 15:22:48
+ * @LastEditTime: 2021-11-02 11:22:28
  * @FilePath: /otter-data/src/routes/async.tsx
  * @Description:
  */
 import { lazy } from 'react'
 
-import { DatabaseOutlined } from '@ant-design/icons'
 import i18n from 'i18next'
 
 const routes = [
@@ -38,7 +37,7 @@ const routes = [
     meta: {
       key: 'Lake',
       name: i18n.t('lake'),
-      icon: <DatabaseOutlined />,
+      icon: 'data',
       permission: 'dataLake*',
     },
     component: lazy(() => import('@/layouts/Normal')),
@@ -47,7 +46,7 @@ const routes = [
       meta: {
         key: 'LakeIndex',
         name: i18n.t('lake'),
-        icon: <DatabaseOutlined />,
+        icon: 'data',
         permission: 'dataLake*',
       },
       component: lazy(() => import('@/views/Lake')),
@@ -58,7 +57,7 @@ const routes = [
     meta: {
       key: 'Set',
       name: i18n.t('set'),
-      icon: <DatabaseOutlined />,
+      icon: 'data',
       permission: 'dataSet*',
     },
     component: lazy(() => import('@/layouts/Normal')),
@@ -68,7 +67,7 @@ const routes = [
         meta: {
           key: 'SetIndex',
           name: i18n.t('set'),
-          icon: <DatabaseOutlined />,
+          icon: 'data',
           permission: 'dataSet*',
         },
         component: lazy(() => import('@/views/Set')),
@@ -89,7 +88,7 @@ const routes = [
       meta: {
         key: 'RemarkIndex',
         name: i18n.t('remark'),
-        icon: <DatabaseOutlined />,
+        icon: 'data',
         permission: 'dataRemark*',
       },
       component: lazy(() => import('@/views/Remark')),
