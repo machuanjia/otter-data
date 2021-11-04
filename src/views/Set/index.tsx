@@ -1,16 +1,25 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 13:57:38
- * @LastEditTime: 2021-10-28 19:12:15
+ * @LastEditTime: 2021-11-04 16:44:57
  * @FilePath: /otter-data/src/views/Set/index.tsx
  * @Description:
  */
-import React from 'react'
+import React, { Component, Fragment } from 'react'
 
-// import i18n from 'i18next';
+import { ContentLayout } from 'otter-pro'
 
-const Set = () => {
-  return <div>Set</div>
+import { NormalLayoutDecorator, RouteDecorator } from '@/decorators'
+
+@RouteDecorator()
+@NormalLayoutDecorator()
+class Set extends Component {
+  render() {
+    return (
+      <ContentLayout>
+        <Fragment key="main">set</Fragment>
+      </ContentLayout>
+    )
+  }
 }
-
 export default Set

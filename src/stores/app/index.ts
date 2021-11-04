@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 19:09:37
- * @LastEditTime: 2021-11-01 15:01:45
+ * @LastEditTime: 2021-11-04 16:34:43
  * @FilePath: /otter-data/src/stores/app/index.ts
  * @Description:
  */
@@ -21,6 +21,11 @@ export interface AppState {
   status: STATUS.IDLE | STATUS.LOADING | STATUS.FAILED
   routes: IRoute[]
   currentRoute: IRoute
+  bread: {
+    icon: string
+    name: string
+    path: string
+  }[]
 }
 
 const initialState: AppState = {
@@ -29,6 +34,7 @@ const initialState: AppState = {
   status: STATUS.LOADING,
   routes: [],
   currentRoute: null,
+  bread: []
 }
 
 export const appSlice = createSlice({
@@ -41,6 +47,9 @@ export const appSlice = createSlice({
     setCurrentRoute: (state, action) => {
       state.currentRoute = action.payload
     },
+    setBread: (state, action) => {
+      state.bread = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -55,9 +64,10 @@ export const appSlice = createSlice({
       })
   },
 })
-export const { setRoutes, setCurrentRoute } = appSlice.actions
+export const { setRoutes, setCurrentRoute, setBread } = appSlice.actions
 export const selectAppPermissions = (state: RootState) => state.app.permissions
 export const selectAppRoutes = (state: RootState) => state.app.routes
 export const selectAppCurrentRoute = (state: RootState) => state.app.currentRoute
+export const selectAppBread = (state: RootState) => state.app.bread
 export const selectAppStatus = (state: RootState) => state.app.status
 export default appSlice.reducer

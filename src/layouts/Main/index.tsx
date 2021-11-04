@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 16:35:49
- * @LastEditTime: 2021-11-01 15:04:39
+ * @LastEditTime: 2021-11-04 17:08:57
  * @FilePath: /otter-data/src/layouts/Main/index.tsx
  * @Description:
  */
@@ -15,13 +15,11 @@ class Main extends Component {
   render() {
     // @ts-ignore
     const { route } = this.props
-    return <>
-      <section className="h-screen flex flex-row">
-        <div id="otter" className="flex-1">
-          <RouteViewer routers={route.children} />
-        </div>
-      </section>
-    </>
+    return (
+      <>
+        <RouteViewer routers={route.children} />
+      </>
+    )
   }
 }
 export default Main
