@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-11-04 14:24:25
- * @LastEditTime: 2021-11-04 16:39:04
+ * @LastEditTime: 2021-11-04 17:33:23
  * @FilePath: /otter-data/src/layouts/Bread/index.tsx
  * @Description:
  */
@@ -15,7 +15,7 @@ import { useAppSelector, selectAppBread } from '@/stores'
 const Bread = () => {
   const bread = useAppSelector(selectAppBread)
   return (
-    <>
+    <span className={` flex flex-row`}>
       {bread.map((n: { icon: string; name: string; path: string }, index) => {
         const { icon = '', name = '', path = '' } = n
         if (!icon && !name) {
@@ -40,7 +40,7 @@ const Bread = () => {
           </span>
         )
       })}
-    </>
+    </span>
   )
 }
 

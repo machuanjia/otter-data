@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:03:39
- * @LastEditTime: 2021-11-01 14:32:53
+ * @LastEditTime: 2021-11-04 19:45:28
  * @FilePath: /otter-data/src/routes/index.tsx
  * @Description:
  */
@@ -43,22 +43,34 @@ export const generateRoutes = (routes: any, extraProps = {}, switchProps = {}) =
   ) : null
 }
 
-export const getPermissionsRouters = (menus, permissions) => {
+export const getPermissionsRouters = (menus, permissions, parentPath = '') => {
   if (menus && menus.length > 0) {
-    return compact(menus.map((item) => {
-      const { path, meta, children } = item
-      if (permissions.includes(meta.permission)) {
-        const nav: IRoute = { path, meta }
-        if (children && children.length > 0) {
-          const childList = compact(getPermissionsRouters(children, permissions))
-          // @ts-ignore
-          // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-          childList.length > 0 && (nav.children = childList)
+    return compact(
+      menus.map((item) => {
+        item.path = parentPath + item.path
+        const { path, meta, children } = item
+        if (!meta || !path) {
+          throw new Error('route must have meta path component')
+        }
+        if (!meta.key || !meta.name) {
+          throw new Error('route meta must have key name')
+        }
+        if (permissions.includes(meta.permission)) {
+          const nav: IRoute = { path, meta }
+          if (children && children.length > 0) {
+            const childList = compact(getPermissionsRouters(children, permissions, path))
+            if (childList.length > 0) {
+              childList.map((n) => {
+                n.parent = { ...nav }
+              })
+              nav.children = childList
+            }
+            return nav
+          }
           return nav
         }
-        return nav
-      }
-    }))
+      }),
+    )
   }
   return []
 }

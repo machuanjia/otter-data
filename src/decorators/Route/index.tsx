@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 19:03:31
- * @LastEditTime: 2021-11-04 16:22:07
+ * @LastEditTime: 2021-11-04 19:57:10
  * @FilePath: /otter-data/src/decorators/Route/index.tsx
  * @Description:
  */
@@ -48,6 +48,32 @@ export const RouteDecorator = () => (WrappedComponent) => {
       loopNode(list, path)
       return node
     }
+    getBread(route) {
+      const bread = []
+      const findParent = (current) => {
+        if (!current) {
+          return
+        }
+        const { meta, parent } = current
+        bread.unshift({
+          icon: meta.icon,
+          name: meta.name,
+          // path: path || '',
+        })
+        if(parent){
+          findParent(parent)
+        }
+      }
+      if(route.meta.isFullPath){
+        findParent(route)
+      }else{
+        bread.unshift({
+          icon: route.meta.icon,
+          name: route.meta.name,
+        })
+      }
+      return bread
+    }
     componentDidMount() {
       // @ts-ignore
       // eslint-disable-next-line @typescript-eslint/no-shadow
@@ -55,12 +81,7 @@ export const RouteDecorator = () => (WrappedComponent) => {
       const route = this.findNode(routes, location.pathname)
       if (route) {
         setCurrentRoute(route)
-        setBread([
-          {
-            icon: route.meta.icon,
-            name: route.meta.name,
-          },
-        ])
+        setBread(this.getBread(route))
       }
     }
     render() {

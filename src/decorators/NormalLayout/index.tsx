@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-11-04 16:40:13
- * @LastEditTime: 2021-11-04 17:01:23
+ * @LastEditTime: 2021-11-04 19:48:13
  * @FilePath: /otter-data/src/decorators/NormalLayout/index.tsx
  * @Description:
  */
@@ -22,7 +22,7 @@ export const NormalLayoutDecorator = () => (WrappedComponent) => {
   const mapDispatchToProps = () => ({})
   // @ts-ignore
   @connect(mapStateToProps, mapDispatchToProps)
-  class Guard extends Component<IProps, IState> {
+  class NormalLayout extends Component<IProps, IState> {
     render() {
       return (
         <section className="h-screen flex flex-col">
@@ -36,5 +36,5 @@ export const NormalLayoutDecorator = () => (WrappedComponent) => {
       )
     }
   }
-  return Guard
+  return NormalLayout
 }

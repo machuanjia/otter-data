@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 16:12:45
- * @LastEditTime: 2021-11-04 17:06:46
+ * @LastEditTime: 2021-11-04 19:40:51
  * @FilePath: /otter-data/src/routes/async.tsx
  * @Description:
  */
@@ -10,28 +10,28 @@ import { lazy } from 'react'
 import i18n from 'i18next'
 
 const routes = [
-  // {
-  //   path: '/counter',
-  //   meta: {
-  //     key: 'Counter',
-  //     name: '计数器',
-  //     icon: '',
-  //     permission: 'counter*',
-  //   },
-  //   component: lazy(() => import('@/layouts/Normal')),
-  //   children: [
-  //     {
-  //       path: '/counter/index',
-  //       meta: {
-  //         key: 'Counter.counter',
-  //         name: 'home',
-  //         icon: '',
-  //         permission: 'counter*.counter',
-  //       },
-  //       component: lazy(() => import('@/views/Counter')),
-  //     },
-  //   ],
-  // },
+  {
+    path: '/counter',
+    meta: {
+      key: 'Counter',
+      name: '计数器',
+      icon: '',
+      permission: 'counter*',
+    },
+    component: lazy(() => import('@/views/Counter')),
+    children: [
+      {
+        path: '/index',
+        meta: {
+          key: 'Counter.counter',
+          name: 'home',
+          icon: '',
+          permission: 'counter*.counter',
+        },
+        component: lazy(() => import('@/views/Home'))
+      }
+    ],
+  },
   {
     path: '/lake',
     meta: {
@@ -40,7 +40,30 @@ const routes = [
       icon: 'data',
       permission: 'dataLake*',
     },
-    component: lazy(() => import('@/views/Lake'))
+    component: lazy(() => import('@/views/Lake')),
+    children: [
+      {
+        path: '/index',
+        meta: {
+          key: 'home',
+          name: 'home',
+          icon: 'data',
+          permission: 'counter*.counter',
+        },
+        component: lazy(() => import('@/views/Home'))
+      },
+      {
+        path: '/detail',
+        meta: {
+          key: 'home',
+          name: 'Counter',
+          icon: 'data',
+          permission: 'counter*.counter',
+          isFullPath: true
+        },
+        component: lazy(() => import('@/views/Counter'))
+      }
+    ],
   },
   {
     path: '/set',

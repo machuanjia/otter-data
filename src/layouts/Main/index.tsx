@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 16:35:49
- * @LastEditTime: 2021-11-04 17:08:57
+ * @LastEditTime: 2021-11-04 17:37:11
  * @FilePath: /otter-data/src/layouts/Main/index.tsx
  * @Description:
  */
@@ -15,11 +15,7 @@ class Main extends Component {
   render() {
     // @ts-ignore
     const { route } = this.props
-    return (
-      <>
-        <RouteViewer routers={route.children} />
-      </>
-    )
+    return <RouteViewer routers={route.children} />
   }
 }
 export default Main
