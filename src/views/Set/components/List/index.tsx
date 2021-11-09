@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-11-08 10:49:24
- * @LastEditTime: 2021-11-09 10:29:27
+ * @LastEditTime: 2021-11-09 14:47:01
  * @FilePath: /otter-data/src/views/Set/components/List/index.tsx
  * @Description:
  */
@@ -27,9 +27,14 @@ const List = () => {
     dispatch(SetService.getSets())
   }, [])
   useEffect(() => {
-    if (list.length > 0) {
-      const size = Math.floor(ref.current.clientWidth / 300)
-      setEmpty(size - (list.length % size))
+    const timer = setTimeout(()=>{
+      if (list.length > 0) {
+        const size = Math.floor(ref.current.clientWidth / 300)
+        setEmpty(size - (list.length % size))
+      }
+    },200)
+    return()=>{
+      clearTimeout(timer)
     }
   }, [list])
   return (
