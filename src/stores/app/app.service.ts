@@ -1,14 +1,14 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-25 14:38:42
- * @LastEditTime: 2021-11-04 18:48:18
+ * @LastEditTime: 2021-11-08 11:06:49
  * @FilePath: /otter-data/src/stores/app/app.service.ts
  * @Description:
  */
 
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { getUserInfo } from '@/apis/app'
+import { getUserInfo } from '@/apis'
 import { getPermissionsRouters } from '@/routes'
 import asyncRoutes from '@/routes/async'
 
