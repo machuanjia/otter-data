@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:43:46
- * @LastEditTime: 2021-10-29 15:45:56
+ * @LastEditTime: 2021-11-09 14:23:28
  * @FilePath: /otter-data/src/index.tsx
  * @Description:
  */
@@ -30,13 +30,19 @@ function render(props) {
   // @ts-ignore
   const baseName = window.__POWERED_BY_QIANKUN__ ? '/data' : '/'
   ReactDOM.render(
-      <Provider store={store}>
-        <ConfigProvider locale={getAntdLocal()} componentSize="middle">
-          <Router basename={baseName}>
-            <App />
-          </Router>
-        </ConfigProvider>
-      </Provider>,
+    <Provider store={store}>
+      <ConfigProvider
+        locale={getAntdLocal()}
+        componentSize="middle"
+        getPopupContainer={() => {
+          return container ? container.querySelector('#root') : document.body
+        }}
+      >
+        <Router basename={baseName}>
+          <App />
+        </Router>
+      </ConfigProvider>
+    </Provider>,
     container ? container.querySelector('#root') : document.querySelector('#root'),
   )
 }
@@ -51,17 +57,16 @@ export async function bootstrap() {
 
 export async function mount(props) {
   // console.log('[react16] props from main framework', props)
-  console.log("====",props)
+  console.log('====', props)
   props.onGlobalStateChange((state: any, prev: any) => {
     // state: 变更后的状态; prev 变更前的状态
     // eslint-disable-next-line no-debugger
     console.log('pherusa:', state, prev)
-  },true)
+  }, true)
 
   props.setGlobalState({
-    name:'plot'
-  });
-
+    name: 'plot',
+  })
 
   render(props)
 }
