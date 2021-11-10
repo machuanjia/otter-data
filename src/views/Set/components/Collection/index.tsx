@@ -1,50 +1,71 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-11-09 10:36:01
- * @LastEditTime: 2021-11-09 16:05:33
+ * @LastEditTime: 2021-11-10 10:10:26
  * @FilePath: /otter-data/src/views/Set/components/Collection/index.tsx
  * @Description:
  */
-import {
-  FormItem,
-  FormLayout,
-  Input,
-  FormButtonGroup,
-  Submit,
-} from '@formily/antd'
+import { FormItem, FormLayout, Input, FormButtonGroup, Submit } from '@formily/antd'
 import { createForm } from '@formily/core'
-import { FormProvider, FormConsumer, Field } from '@formily/react'
+import { FormProvider, Field } from '@formily/react'
+import { Button } from 'antd'
 
+import { CreateModal } from '@/components'
+import {
+  selectIsCollectionVisible,
+  setIsCollectionVisible,
+  useAppDispatch,
+  useAppSelector,
+} from '@/stores'
+
+const { TextArea } = Input
 const form = createForm()
 
 const SetCollection = () => {
-  return <div> <FormProvider form={form}>
-  <FormLayout layout="vertical">
-    <Field
-      name="input"
-      title="输入框"
-      required
-      initialValue="Hello world"
-      decorator={[FormItem]}
-      component={[Input]}
-    />
-  </FormLayout>
-  <FormConsumer>
-    {() => (
-      <div
-        style={{
-          marginBottom: 20,
-          padding: 5,
-          border: '1px dashed #666',
-        }}
-      >
-        实时响应：{form.values.input}
-      </div>
-    )}
-  </FormConsumer>
-  <FormButtonGroup>
-    <Submit onSubmit={console.log}>提交</Submit>
-  </FormButtonGroup>
-</FormProvider></div>
+  const isCollectionVisible = useAppSelector(selectIsCollectionVisible)
+  const dispatch = useAppDispatch()
+  const handleClose = () => {
+    dispatch(setIsCollectionVisible(false))
+  }
+  return (
+    <CreateModal isVisible={isCollectionVisible} onClose={handleClose}>
+      <FormProvider form={form}>
+        <FormLayout layout="vertical">
+          <Field
+            name="name"
+            title="名称"
+            required
+            initialValue=""
+            decorator={[FormItem]}
+            component={[
+              Input,
+              {
+                placeholder: '请输入名称',
+              },
+            ]}
+          />
+          <Field
+            name="description"
+            title="描述"
+            required
+            initialValue=""
+            decorator={[FormItem]}
+            component={[
+              TextArea,
+              {
+                placeholder: '请输入描述',
+              },
+            ]}
+          />
+        </FormLayout>
+        <FormButtonGroup>
+          <Submit onSubmit={console.log}>确定</Submit>
+          <Button type="link" onClick={handleClose}>
+            取消
+          </Button>
+        </FormButtonGroup>
+      </FormProvider>
+    </CreateModal>
+  )
 }
 export default SetCollection

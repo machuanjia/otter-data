@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:48:53
- * @LastEditTime: 2021-10-26 09:40:34
+ * @LastEditTime: 2021-11-09 17:56:00
  * @FilePath: /otter-data/config-overrides.js
  * @Description:
  */
@@ -58,15 +58,15 @@ const getStyleLoaders = (cssOptions, preProcessor, lessOptions) => {
   }
   return loaders
 }
-const { name } = require('./package');
+const { name } = require('./package')
 const devConfig = () => {
   return (config) => {
     config.headers = config.headers || {}
     config.headers['Access-Control-Allow-Origin'] = '*'
-    config.historyApiFallback = true;
-    config.hot = false;
-    config.watchContentBase = false;
-    config.liveReload = false;
+    config.historyApiFallback = true
+    config.hot = false
+    config.watchContentBase = false
+    config.liveReload = false
     return {
       ...config,
       before(app) {
@@ -95,10 +95,15 @@ module.exports = {
         javascriptEnabled: true,
       },
     }),
-    fixBabelImports('import', {
+    fixBabelImports('antd', {
       libraryName: 'antd',
       libraryDirectory: 'es',
-      style: 'css',
+      style: true,
+    }),
+    fixBabelImports('@formily/antd', {
+      libraryName: '@formily/antd',
+      libraryDirectory: 'esm',
+      style: true,
     }),
 
     addPostcssPlugins([require('tailwindcss'), require('autoprefixer')]),
@@ -112,10 +117,10 @@ module.exports = {
     ),
     (config) => {
       config.output = config.output || {}
-      config.output.library = `${name}-[name]`;
-      config.output.libraryTarget = 'umd';
-      config.output.jsonpFunction = `webpackJsonp_${name}`;
-      config.output.globalObject = 'window';
+      config.output.library = `${name}-[name]`
+      config.output.libraryTarget = 'umd'
+      config.output.jsonpFunction = `webpackJsonp_${name}`
+      config.output.globalObject = 'window'
       const oneOf_loc = config.module.rules.findIndex((n) => n.oneOf) // 这里的config是全局的
       config.module.rules[oneOf_loc].oneOf = [
         {

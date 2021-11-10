@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 19:09:37
- * @LastEditTime: 2021-11-08 14:45:14
+ * @LastEditTime: 2021-11-10 10:06:56
  * @FilePath: /otter-data/src/stores/set/index.ts
  * @Description:
  */
@@ -22,6 +22,7 @@ export interface SetState {
   total: number
   pageSize: number
   pageIndex: number
+  isCollectionVisible: boolean
 }
 
 const initialState: SetState = {
@@ -30,12 +31,17 @@ const initialState: SetState = {
   total: 0,
   pageSize: 20,
   pageIndex: 1,
+  isCollectionVisible: false,
 }
 
 export const setSlice = createSlice({
   name: 'set',
   initialState,
-  reducers: {},
+  reducers: {
+    setIsCollectionVisible: (state, action) => {
+      state.isCollectionVisible = action.payload
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(SetService.getSets.pending, (state) => {
@@ -51,7 +57,7 @@ export const setSlice = createSlice({
       })
   },
 })
-export const {} = setSlice.actions
+export const { setIsCollectionVisible } = setSlice.actions
 export const selectSetStatus = (state: RootState) => state.set.status
 export const selectSetList = (state: RootState) => state.set.list
 export const selectSetTotal = (state: RootState) => state.set.total
@@ -64,4 +70,5 @@ export const selectSetPagination = (state: RootState) => {
     pageSize: state.set.pageSize,
   }
 }
+export const selectIsCollectionVisible = (state: RootState) => state.set.isCollectionVisible
 export default setSlice.reducer
