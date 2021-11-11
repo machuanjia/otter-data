@@ -1,12 +1,12 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 19:09:37
- * @LastEditTime: 2021-11-10 10:06:56
+ * @LastEditTime: 2021-11-11 08:43:17
  * @FilePath: /otter-data/src/stores/set/index.ts
  * @Description:
  */
 
-import { createSlice } from '@reduxjs/toolkit'
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit'
 import { STATUS } from 'otter-pro'
 
 import type { ISet } from '@/models'
@@ -25,18 +25,33 @@ export interface SetState {
   isCollectionVisible: boolean
 }
 
-const initialState: SetState = {
-  status: STATUS.LOADING,
-  list: [],
-  total: 0,
-  pageSize: 20,
-  pageIndex: 1,
-  isCollectionVisible: false,
-}
+// const initialState: SetState = {
+//   status: STATUS.LOADING,
+//   list: [],
+//   total: 0,
+//   pageSize: 20,
+//   pageIndex: 1,
+//   isCollectionVisible: false,
+// }
+
+const setsAdapter = createEntityAdapter<ISet>({
+  // Assume IDs are stored in a field other than `book.id`
+  selectId: (set: ISet) => set.id,
+  // Keep the "all IDs" array sorted based on book titles
+  sortComparer: (a, b) => a.name.localeCompare(b.name),
+})
+
+// console.log(setsAdapter)
 
 export const setSlice = createSlice({
   name: 'set',
-  initialState,
+  initialState: setsAdapter.getInitialState({
+    status: STATUS.LOADING,
+    total: 0,
+    pageSize: 20,
+    pageIndex: 1,
+    isCollectionVisible: false,
+  }),
   reducers: {
     setIsCollectionVisible: (state, action) => {
       state.isCollectionVisible = action.payload
@@ -49,7 +64,7 @@ export const setSlice = createSlice({
       })
       .addCase(SetService.getSets.fulfilled, (state, action) => {
         const { total = 0, page_size, page_index, value = [] } = action.payload as unknown as IList
-        state.list = value
+        setsAdapter.setAll(state, value)
         state.total = total
         state.pageSize = page_size
         state.pageIndex = page_index
@@ -57,9 +72,11 @@ export const setSlice = createSlice({
       })
   },
 })
+
 export const { setIsCollectionVisible } = setSlice.actions
+export const setsSelectors = setsAdapter.getSelectors<RootState>((state) => state.set)
 export const selectSetStatus = (state: RootState) => state.set.status
-export const selectSetList = (state: RootState) => state.set.list
+export const selectSetList = (state: RootState) => state.set.entities
 export const selectSetTotal = (state: RootState) => state.set.total
 export const selectSetPageSize = (state: RootState) => state.set.pageSize
 export const selectSetPageIndex = (state: RootState) => state.set.pageIndex

@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-11-08 10:54:54
- * @LastEditTime: 2021-11-09 14:40:41
+ * @LastEditTime: 2021-11-11 08:41:35
  * @FilePath: /otter-data/mock/set.js
  * @Description:
  */
@@ -14,44 +14,44 @@ const proxy = {
       page_index: 1,
       value: [
         {
-          id: '1',
+          id: '11',
           name: '身份证拍摄扫描',
           status: 1,
           description: '这个数据集是将身份证数据集打印后手动拍照构造',
         },
         {
-          id: '2',
+          id: '21',
           name: '身份证拍摄扫描2',
           status: 1,
           description: '这个数据集是将身份证数据集打印后手动拍照构造',
         },
         {
-          id: '3',
+          id: '31',
           name: '身份证拍摄扫描3',
           status: 1,
           description: '这个数据集是将身份证数据集打印后手动拍照构造',
         },{
-          id: '4',
+          id: '41',
           name: '身份证拍摄扫描3',
           status: 1,
           description: '这个数据集是将身份证数据集打印后手动拍照构造',
         },{
-          id: '5',
+          id: '51',
           name: '身份证拍摄扫描3',
           status: 1,
           description: '这个数据集是将身份证数据集打印后手动拍照构造',
         },{
-          id: '6',
+          id: '61',
           name: '身份证拍摄扫描3',
           status: 1,
           description: '这个数据集是将身份证数据集打印后手动拍照构造',
         },{
-          id: '7',
+          id: '71',
           name: '身份证拍摄扫描3',
           status: 1,
           description: '这个数据集是将身份证数据集打印后手动拍照构造',
         },{
-          id: '8',
+          id: '81',
           name: '身份证拍摄扫描3',
           status: 1,
           description: '这个数据集是将身份证数据集打印后手动拍照构造',
