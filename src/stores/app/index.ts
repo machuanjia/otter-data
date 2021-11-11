@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 19:09:37
- * @LastEditTime: 2021-11-04 16:34:43
+ * @LastEditTime: 2021-11-11 11:38:39
  * @FilePath: /otter-data/src/stores/app/index.ts
  * @Description:
  */
@@ -34,7 +34,7 @@ const initialState: AppState = {
   status: STATUS.LOADING,
   routes: [],
   currentRoute: null,
-  bread: []
+  bread: [],
 }
 
 export const appSlice = createSlice({
@@ -49,7 +49,7 @@ export const appSlice = createSlice({
     },
     setBread: (state, action) => {
       state.bread = action.payload
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
