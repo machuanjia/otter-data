@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 16:12:45
- * @LastEditTime: 2021-11-04 19:40:51
+ * @LastEditTime: 2021-11-11 09:50:30
  * @FilePath: /otter-data/src/routes/async.tsx
  * @Description:
  */
@@ -28,8 +28,8 @@ const routes = [
           icon: '',
           permission: 'counter*.counter',
         },
-        component: lazy(() => import('@/views/Home'))
-      }
+        component: lazy(() => import('@/views/Home')),
+      },
     ],
   },
   {
@@ -50,7 +50,7 @@ const routes = [
           icon: 'data',
           permission: 'counter*.counter',
         },
-        component: lazy(() => import('@/views/Home'))
+        component: lazy(() => import('@/views/Home')),
       },
       {
         path: '/detail',
@@ -59,10 +59,10 @@ const routes = [
           name: 'Counter',
           icon: 'data',
           permission: 'counter*.counter',
-          isFullPath: true
+          isFullPath: true,
         },
-        component: lazy(() => import('@/views/Counter'))
-      }
+        component: lazy(() => import('@/views/Counter')),
+      },
     ],
   },
   {
@@ -73,7 +73,29 @@ const routes = [
       icon: 'data',
       permission: 'dataSet*',
     },
-    component: lazy(() => import('@/views/Set'))
+    component: lazy(() => import('@/views/Set')),
+    children: [
+      {
+        path: '/index',
+        meta: {
+          key: 'SetList',
+          name: i18n.t('set'),
+          icon: 'data',
+          permission: 'dataSet*',
+        },
+        component: lazy(() => import('@/views/Set/list')),
+      },
+      {
+        path: '/:id',
+        meta: {
+          key: 'SetDetail',
+          name: i18n.t('set'),
+          icon: 'data',
+          permission: 'dataSet*',
+        },
+        component: lazy(() => import('@/views/Set/detail')),
+      },
+    ],
   },
   {
     path: '/remark',
@@ -83,7 +105,7 @@ const routes = [
       icon: 'data',
       permission: 'dataRemark*',
     },
-    component: lazy(() => import('@/views/Remark'))
+    component: lazy(() => import('@/views/Remark')),
   },
 ]
 

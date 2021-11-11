@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 19:03:31
- * @LastEditTime: 2021-11-04 19:57:10
+ * @LastEditTime: 2021-11-11 11:09:16
  * @FilePath: /otter-data/src/decorators/Route/index.tsx
  * @Description:
  */
@@ -38,7 +38,10 @@ export const RouteDecorator = () => (WrappedComponent) => {
       const loopNode = (list: IRoute[], path: string) => {
         // eslint-disable-next-line array-callback-return
         list.map((n: IRoute) => {
-          if (n.path === path) {
+          if (
+            n.path === path ||
+            (n.path.indexOf(':') > -1 && path.indexOf(n.path.split(':')[0]) > -1)
+          ) {
             node = n
           } else if (n.children) {
             loopNode(n.children, path)
@@ -60,13 +63,13 @@ export const RouteDecorator = () => (WrappedComponent) => {
           name: meta.name,
           // path: path || '',
         })
-        if(parent){
+        if (parent) {
           findParent(parent)
         }
       }
-      if(route.meta.isFullPath){
+      if (route.meta.isFullPath) {
         findParent(route)
-      }else{
+      } else {
         bread.unshift({
           icon: route.meta.icon,
           name: route.meta.name,
@@ -74,15 +77,24 @@ export const RouteDecorator = () => (WrappedComponent) => {
       }
       return bread
     }
-    componentDidMount() {
+    setRoute(pathname) {
       // @ts-ignore
       // eslint-disable-next-line @typescript-eslint/no-shadow
-      const { routes, location, setCurrentRoute, setBread } = this.props
-      const route = this.findNode(routes, location.pathname)
+      const { routes, setCurrentRoute, setBread } = this.props
+      const route = this.findNode(routes, pathname)
       if (route) {
         setCurrentRoute(route)
         setBread(this.getBread(route))
       }
+    }
+    componentDidMount() {
+      // @ts-ignore
+      // eslint-disable-next-line @typescript-eslint/no-shadow
+      const { location, history } = this.props
+      history.listen((args) => {
+        this.setRoute(args.pathname)
+      })
+      this.setRoute(location.pathname)
     }
     render() {
       return (

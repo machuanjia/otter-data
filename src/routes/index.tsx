@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:03:39
- * @LastEditTime: 2021-11-04 19:45:28
+ * @LastEditTime: 2021-11-11 11:00:21
  * @FilePath: /otter-data/src/routes/index.tsx
  * @Description:
  */
@@ -23,7 +23,7 @@ export const generateRoutes = (routes: any, extraProps = {}, switchProps = {}) =
     <Switch {...switchProps}>
       {routes.map((route: any, i) => (
         <Route
-          key={route.key || i}
+          key={route.meta.key || i}
           path={route.path}
           exact={route.exact}
           strict={route.strict}

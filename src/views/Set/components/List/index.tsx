@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-11-08 10:49:24
- * @LastEditTime: 2021-11-11 08:47:23
+ * @LastEditTime: 2021-11-11 09:21:57
  * @FilePath: /otter-data/src/views/Set/components/List/index.tsx
  * @Description:
  */
@@ -10,6 +10,7 @@ import { useEffect, useState, useRef } from 'react'
 
 import { map, range } from 'lodash'
 import { PartLoading, STATUS } from 'otter-pro'
+import { useHistory } from "react-router-dom"
 
 import { selectSetList, selectSetStatus, useAppDispatch, useAppSelector } from '@/stores'
 import SetService from '@/stores/set/set.service'
@@ -23,6 +24,7 @@ const List = () => {
   const ref = useRef(null)
   const [empty, setEmpty] = useState(0)
   const dispatch = useAppDispatch()
+  const history = useHistory()  
   useEffect(() => {
     dispatch(SetService.getSets())
   }, [])
@@ -37,6 +39,9 @@ const List = () => {
       clearTimeout(timer)
     }
   }, [list])
+  const touchSet = ()=>{
+    history.push('/set/123')
+  }
   return (
     <>
       {status === STATUS.LOADING ? (
@@ -45,7 +50,7 @@ const List = () => {
         <div className={styles['list-wrap']} ref={ref}>
           {map(list, (n, key) => {
             return (
-              <div key={key} className={styles['list-item']}>
+              <div key={key} className={styles['list-item']} onClick={touchSet}>
                 <Card entity={n} />
               </div>
             )
