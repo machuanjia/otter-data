@@ -1,8 +1,8 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-11-08 14:46:32
- * @LastEditTime: 2021-11-08 16:04:41
- * @FilePath: /otter-data/src/views/Set/components/Card.tsx
+ * @LastEditTime: 2021-11-11 11:45:19
+ * @FilePath: /otter-data/src/views/Set/components/Card/index.tsx
  * @Description:
  */
 import { memo } from 'react'
@@ -23,7 +23,7 @@ const SetCard = memo(
     const { name, description } = entity
     return (
       <Card
-        style={{ width: 300 }}
+        className=" w-72"
         cover={
           <img
             alt="example"

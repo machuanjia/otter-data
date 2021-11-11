@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 19:03:31
- * @LastEditTime: 2021-11-11 11:09:16
+ * @LastEditTime: 2021-11-11 12:16:15
  * @FilePath: /otter-data/src/decorators/Route/index.tsx
  * @Description:
  */
@@ -38,10 +38,9 @@ export const RouteDecorator = () => (WrappedComponent) => {
       const loopNode = (list: IRoute[], path: string) => {
         // eslint-disable-next-line array-callback-return
         list.map((n: IRoute) => {
-          if (
-            n.path === path ||
-            (n.path.indexOf(':') > -1 && path.indexOf(n.path.split(':')[0]) > -1)
-          ) {
+          if (n.path === path) {
+            node = n
+          } else if(path.indexOf('/index') === -1 &&  n.path.indexOf(':') > -1 && path.indexOf(n.path.split(':')[0]) > -1){
             node = n
           } else if (n.children) {
             loopNode(n.children, path)
