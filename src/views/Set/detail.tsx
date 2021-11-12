@@ -1,16 +1,20 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-11-11 08:51:33
- * @LastEditTime: 2021-11-12 13:48:30
+ * @LastEditTime: 2021-11-12 19:41:57
  * @FilePath: /otter-data/src/views/Set/detail.tsx
  * @Description:
  */
 import React, { Component } from 'react'
 
-import { ContentLayout, LAYOUT_TYPE } from 'otter-pro'
+import { Button } from 'antd'
+import { LAYOUT_TYPE } from 'otter-pro'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-import type { ISet } from '@/models'
+import Bread from '@/layouts/Bread'
+import type { IRoute, ISet } from '@/models'
+import { RouteViewer } from '@/routes'
 import { setLayout } from '@/stores'
 import SetService from '@/stores/set/set.service'
 
@@ -20,29 +24,56 @@ type IProps = {
       id: string
     }
   }
+  activeRoute: IRoute
   detail: ISet
   getSetDetail: (id: string) => void
-  setLayout: (type: string) => void
+  setMainLayout: (type: string) => void
+  route: any
+  history: {}[]
 }
-type IState = {}
+type IState = {
+  active: string
+}
+
 const mapStateToProps = (state) => ({
   detail: state.set.detail,
+  activeRoute: state.app.currentRoute,
 })
 const mapDispatchToProps = (dispatch) => ({
   getSetDetail: (id) => dispatch(SetService.getSetDetail(id)),
-  setLayout: (payload) => dispatch(setLayout(payload)),
+  setMainLayout: (payload) => dispatch(setLayout(payload)),
 })
 // @ts-ignore
 @connect(mapStateToProps, mapDispatchToProps)
 class SetDetail extends Component<IProps, IState> {
   componentDidMount() {
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-    const { match, getSetDetail, setLayout } = this.props
+    const { match, getSetDetail, setMainLayout } = this.props
     getSetDetail(match.params.id)
-    setLayout(LAYOUT_TYPE.FULL)
+    setMainLayout(LAYOUT_TYPE.FULL)
   }
   render() {
-    return <ContentLayout>SetDetail</ContentLayout>
+    const { route, match, activeRoute } = this.props
+    return (
+      <section className="h-screen flex flex-col">
+        <header className=" border-b border-solid border-divider p-4 text-secondary flex flex-row">
+          <Bread />
+          <div className="flex-1 flex flex-row justify-center">
+            <Link to={`/set/${match.params.id}/version`}>版本{activeRoute?.meta?.key}</Link>
+            <Link to={`/set/${match.params.id}/basic`}>基本信息</Link>
+          </div>
+          <div>
+            <Button size="small">Fork</Button>
+            <Button size="small" type="primary" className="ml-2 mr-2">
+              新建任务
+            </Button>
+            <Button size="small">删除</Button>
+          </div>
+        </header>
+        <div className={` flex-1 bg-main`}>
+          <RouteViewer routers={route.children} />
+        </div>
+      </section>
+    )
   }
 }
 

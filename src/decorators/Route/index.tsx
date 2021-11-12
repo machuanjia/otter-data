@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 19:03:31
- * @LastEditTime: 2021-11-12 13:53:34
+ * @LastEditTime: 2021-11-12 19:21:25
  * @FilePath: /otter-data/src/decorators/Route/index.tsx
  * @Description:
  */
@@ -12,7 +12,7 @@ import { LAYOUT_TYPE } from 'otter-pro'
 import { connect } from 'react-redux'
 
 import type { IRoute } from '@/models'
-import { setCurrentRoute, setBread,setLayout } from '@/stores/app'
+import { setCurrentRoute, setBread, setLayout } from '@/stores/app'
 
 type IProps = {
   permissions: string[]
@@ -29,20 +29,35 @@ export const RouteDecorator = () => (WrappedComponent) => {
   const mapDispatchToProps = (dispatch) => ({
     setCurrentRoute: (route) => dispatch(setCurrentRoute(route)),
     setBread: (bread) => dispatch(setBread(bread)),
-    setLayout:(payload)=>dispatch(setLayout(payload))
+    setLayout: (payload) => dispatch(setLayout(payload)),
   })
   // @ts-ignore
   @connect(mapStateToProps, mapDispatchToProps)
   class Route extends Component<IProps, IState> {
+    isPath(path: string, template: string) {
+      if (path === template) {
+        return true
+      }
+      const pathArray = path.split('/')
+      const templateArray = template.split('/')
+      if (pathArray.length !== templateArray.length) {
+        return false
+      }
+      templateArray.map((n, index) => {
+        if (n.indexOf(':') > -1) {
+          templateArray[index] = '-'
+          pathArray[index] = '-'
+        }
+      })
+      return pathArray.join() === templateArray.join()
+    }
     findNode(list: IRoute[], path: string) {
       let node: any = null
       // eslint-disable-next-line @typescript-eslint/no-shadow
       const loopNode = (list: IRoute[], path: string) => {
         // eslint-disable-next-line array-callback-return
         list.map((n: IRoute) => {
-          if (n.path === path) {
-            node = n
-          } else if(path.indexOf('/index') === -1 &&  n.path.indexOf(':') > -1 && path.indexOf(n.path.split(':')[0]) > -1){
+          if (this.isPath(path, n.path)) {
             node = n
           } else if (n.children) {
             loopNode(n.children, path)
@@ -84,6 +99,7 @@ export const RouteDecorator = () => (WrappedComponent) => {
       const { routes, setCurrentRoute, setBread } = this.props
       const route = this.findNode(routes, pathname)
       if (route) {
+        // @ts-ignore
         setCurrentRoute(route)
         setBread(this.getBread(route))
       }

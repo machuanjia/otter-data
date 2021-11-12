@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 16:12:45
- * @LastEditTime: 2021-11-11 11:47:02
+ * @LastEditTime: 2021-11-12 17:54:27
  * @FilePath: /otter-data/src/routes/async.tsx
  * @Description:
  */
@@ -92,9 +92,33 @@ const routes = [
           name: i18n.t('set'),
           icon: 'data',
           permission: 'dataSet*',
-          isFullPath:true
+          isFullPath: true,
         },
         component: lazy(() => import('@/views/Set/detail')),
+        children: [
+          {
+            path: '/version',
+            meta: {
+              key: 'SetDetailVersion',
+              name: i18n.t('set'),
+              icon: 'data',
+              permission: 'dataSet*',
+              isFullPath: true,
+            },
+            component: lazy(() => import('@/views/Set/version')),
+          },
+          {
+            path: '/basic',
+            meta: {
+              key: 'SetDetailBasic',
+              name: i18n.t('set'),
+              icon: 'data',
+              permission: 'dataSet*',
+              isFullPath: true,
+            },
+            component: lazy(() => import('@/views/Set/basic')),
+          },
+        ],
       },
     ],
   },
