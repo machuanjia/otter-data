@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-11-08 10:49:24
- * @LastEditTime: 2021-11-11 09:21:57
+ * @LastEditTime: 2021-11-11 13:58:10
  * @FilePath: /otter-data/src/views/Set/components/List/index.tsx
  * @Description:
  */
@@ -39,8 +39,8 @@ const List = () => {
       clearTimeout(timer)
     }
   }, [list])
-  const touchSet = ()=>{
-    history.push('/set/123')
+  const touchSet = (n)=>{
+    history.push(`/set/${n.id}`)
   }
   return (
     <>
@@ -50,7 +50,7 @@ const List = () => {
         <div className={styles['list-wrap']} ref={ref}>
           {map(list, (n, key) => {
             return (
-              <div key={key} className={styles['list-item']} onClick={touchSet}>
+              <div key={key} className={styles['list-item']} onClick={()=>{touchSet(n)}}>
                 <Card entity={n} />
               </div>
             )

@@ -1,11 +1,11 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 13:57:38
- * @LastEditTime: 2021-11-11 11:18:20
+ * @LastEditTime: 2021-11-12 08:52:15
  * @FilePath: /otter-data/src/views/Lake/index.tsx
  * @Description:
  */
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 
 import { ContentLayout } from 'otter-pro'
 
@@ -22,10 +22,8 @@ class Lake extends Component {
     const { route } = this.props
     return (
       <ContentLayout>
-        <Fragment key="main">
         lake
         <RouteViewer routers={route.children}/>
-        </Fragment>
       </ContentLayout>
     )
   }

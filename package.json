@@ -24,7 +24,7 @@
     "mocker-api": "^2.9.3",
     "mockjs": "^1.1.0",
     "moment": "^2.29.1",
-    "otter-pro": "0.0.25",
+    "otter-pro": "^0.0.27",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-i18next": "^11.12.0",

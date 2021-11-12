@@ -2,7 +2,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 13:57:38
- * @LastEditTime: 2021-11-11 09:01:46
+ * @LastEditTime: 2021-11-12 08:54:14
  * @FilePath: /otter-data/src/views/Set/list.tsx
  * @Description:
  */
@@ -36,11 +36,11 @@ class SetList extends Component<IProps, IState> {
   render() {
     // @ts-ignore
     // eslint-disable-next-line @typescript-eslint/no-shadow
-    const { setIsCollectionVisible,route } = this.props
+    const { setIsCollectionVisible, route } = this.props
     return (
       <>
-        <ContentLayout>
-          <Fragment key="hLeft">
+        <ContentLayout
+          hLeft={
             <Search
               className="search"
               placeholder="请您输入..."
@@ -49,8 +49,8 @@ class SetList extends Component<IProps, IState> {
               }}
               enterButton
             />
-          </Fragment>
-          <Fragment key="hRight">
+          }
+          hRight={
             <Button
               type="primary"
               className=""
@@ -60,10 +60,9 @@ class SetList extends Component<IProps, IState> {
             >
               <PlusOutlined className=" align-middle" /> 新建
             </Button>
-          </Fragment>
-          <Fragment key="main">
-            <List />
-          </Fragment>
+          }
+        >
+          <List />
         </ContentLayout>
         <SetCollection />
       </>

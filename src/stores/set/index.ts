@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 19:09:37
- * @LastEditTime: 2021-11-11 08:43:17
+ * @LastEditTime: 2021-11-11 14:16:48
  * @FilePath: /otter-data/src/stores/set/index.ts
  * @Description:
  */
@@ -50,7 +50,7 @@ export const setSlice = createSlice({
     total: 0,
     pageSize: 20,
     pageIndex: 1,
-    isCollectionVisible: false,
+    isCollectionVisible: false
   }),
   reducers: {
     setIsCollectionVisible: (state, action) => {
@@ -69,6 +69,14 @@ export const setSlice = createSlice({
         state.pageSize = page_size
         state.pageIndex = page_index
         state.status = STATUS.IDLE
+      })
+      .addCase(SetService.getSetDetail.pending,(state)=>{
+        state.status = STATUS.LOADING
+      })
+      .addCase(SetService.getSetDetail.fulfilled,(state,action)=>{
+        // @ts-ignore
+        setsAdapter.setOne(state, action.payload)
+        state.status = STATUS.LOADING
       })
   },
 })
