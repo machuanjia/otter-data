@@ -9799,10 +9799,10 @@
     "lcid" "^3.0.0"
     "mem" "^5.0.0"
 
-"otter-pro@^0.0.27":
-  "integrity" "sha512-CL8KGLUfz1kbD4egJXJB+qDDc8l+rshsdIPXye+dMDK+IhLPUwUjAh/9f03bp9pmh2iO1yFZm9em7lONB9lJlQ=="
-  "resolved" "https://registry.npmjs.org/otter-pro/-/otter-pro-0.0.27.tgz"
-  "version" "0.0.27"
+"otter-pro@^0.0.28":
+  "integrity" "sha512-QjjJT4drWo1F0dTMrydAlaJocRnrvoAVWLOEuVQL+bsGkYsLEuNIw3j7xWffqo590NhNWFGwwX3fnh2+HQdyGQ=="
+  "resolved" "https://registry.npmjs.org/otter-pro/-/otter-pro-0.0.28.tgz"
+  "version" "0.0.28"
   dependencies:
     "@ant-design/icons" "^4.7.0"
     "antd" "^4.16.13"
@@ -11129,8 +11129,8 @@
     "sisteransi" "^1.0.5"
 
 "prop-types@^15.0.0", "prop-types@^15.5.7", "prop-types@^15.6.2", "prop-types@^15.7.2":
-  "integrity" "sha1-UsQedbjIfnK52TYOAga5ncv/psU="
-  "resolved" "https://registry.npm.taobao.org/prop-types/download/prop-types-15.7.2.tgz"
+  "integrity" "sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ=="
+  "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
   "version" "15.7.2"
   dependencies:
     "loose-envify" "^1.4.0"

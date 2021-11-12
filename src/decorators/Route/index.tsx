@@ -1,17 +1,18 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 19:03:31
- * @LastEditTime: 2021-11-11 12:16:15
+ * @LastEditTime: 2021-11-12 13:53:34
  * @FilePath: /otter-data/src/decorators/Route/index.tsx
  * @Description:
  */
 
 import React, { Component } from 'react'
 
+import { LAYOUT_TYPE } from 'otter-pro'
 import { connect } from 'react-redux'
 
 import type { IRoute } from '@/models'
-import { setCurrentRoute, setBread } from '@/stores/app'
+import { setCurrentRoute, setBread,setLayout } from '@/stores/app'
 
 type IProps = {
   permissions: string[]
@@ -28,6 +29,7 @@ export const RouteDecorator = () => (WrappedComponent) => {
   const mapDispatchToProps = (dispatch) => ({
     setCurrentRoute: (route) => dispatch(setCurrentRoute(route)),
     setBread: (bread) => dispatch(setBread(bread)),
+    setLayout:(payload)=>dispatch(setLayout(payload))
   })
   // @ts-ignore
   @connect(mapStateToProps, mapDispatchToProps)
@@ -89,11 +91,13 @@ export const RouteDecorator = () => (WrappedComponent) => {
     componentDidMount() {
       // @ts-ignore
       // eslint-disable-next-line @typescript-eslint/no-shadow
-      const { location, history } = this.props
+      const { location, history, setLayout } = this.props
       history.listen((args) => {
         this.setRoute(args.pathname)
+        setLayout(LAYOUT_TYPE.NORMAL)
       })
       this.setRoute(location.pathname)
+      setLayout(LAYOUT_TYPE.NORMAL)
     }
     render() {
       return (

@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 19:09:37
- * @LastEditTime: 2021-11-11 14:16:48
+ * @LastEditTime: 2021-11-12 10:23:47
  * @FilePath: /otter-data/src/stores/set/index.ts
  * @Description:
  */
@@ -23,16 +23,8 @@ export interface SetState {
   pageSize: number
   pageIndex: number
   isCollectionVisible: boolean
+  detail: ISet
 }
-
-// const initialState: SetState = {
-//   status: STATUS.LOADING,
-//   list: [],
-//   total: 0,
-//   pageSize: 20,
-//   pageIndex: 1,
-//   isCollectionVisible: false,
-// }
 
 const setsAdapter = createEntityAdapter<ISet>({
   // Assume IDs are stored in a field other than `book.id`
@@ -41,8 +33,6 @@ const setsAdapter = createEntityAdapter<ISet>({
   sortComparer: (a, b) => a.name.localeCompare(b.name),
 })
 
-// console.log(setsAdapter)
-
 export const setSlice = createSlice({
   name: 'set',
   initialState: setsAdapter.getInitialState({
@@ -50,7 +40,8 @@ export const setSlice = createSlice({
     total: 0,
     pageSize: 20,
     pageIndex: 1,
-    isCollectionVisible: false
+    isCollectionVisible: false,
+    detail: null,
   }),
   reducers: {
     setIsCollectionVisible: (state, action) => {
@@ -70,12 +61,11 @@ export const setSlice = createSlice({
         state.pageIndex = page_index
         state.status = STATUS.IDLE
       })
-      .addCase(SetService.getSetDetail.pending,(state)=>{
+      .addCase(SetService.getSetDetail.pending, (state) => {
         state.status = STATUS.LOADING
       })
-      .addCase(SetService.getSetDetail.fulfilled,(state,action)=>{
-        // @ts-ignore
-        setsAdapter.setOne(state, action.payload)
+      .addCase(SetService.getSetDetail.fulfilled, (state, action) => {
+        state.detail = action.payload
         state.status = STATUS.LOADING
       })
   },
@@ -85,6 +75,7 @@ export const { setIsCollectionVisible } = setSlice.actions
 export const setsSelectors = setsAdapter.getSelectors<RootState>((state) => state.set)
 export const selectSetStatus = (state: RootState) => state.set.status
 export const selectSetList = (state: RootState) => state.set.entities
+export const selectSetDetail = (state: RootState) => state.set.detail
 export const selectSetTotal = (state: RootState) => state.set.total
 export const selectSetPageSize = (state: RootState) => state.set.pageSize
 export const selectSetPageIndex = (state: RootState) => state.set.pageIndex
