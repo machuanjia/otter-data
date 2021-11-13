@@ -5,7 +5,11 @@
  * @FilePath: /otter-data/src/views/Set/version.tsx
  * @Description: 
  */
+import { selectSetDetail, useAppSelector } from "@/stores"
+
 const SetVersion = ()=>{
+    const detail = useAppSelector(selectSetDetail)
+    console.log(detail)
     return <div>version</div>
 }
 

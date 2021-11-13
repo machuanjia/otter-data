@@ -5,7 +5,11 @@
  * @FilePath: /otter-data/src/views/Set/basic.tsx
  * @Description: 
  */
+import { selectSetDetail, useAppSelector } from "@/stores"
+
 const SetBasic = ()=>{
+    const detail = useAppSelector(selectSetDetail)
+    console.log(detail)
     return <div>basic</div>
 }
 
