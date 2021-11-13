@@ -7,12 +7,11 @@
  */
 import React, { Component } from 'react'
 
-import { GuardDecorator, LayoutDecorator, RouteDecorator } from '@/decorators'
+import { GuardDecorator, RouteDecorator } from '@/decorators'
 import { RouteViewer } from '@/routes'
 
 @GuardDecorator()
 @RouteDecorator()
-@LayoutDecorator()
 class Main extends Component {
   render() {
     // @ts-ignore

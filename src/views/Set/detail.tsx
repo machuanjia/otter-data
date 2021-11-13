@@ -8,7 +8,6 @@
 import React, { Component } from 'react'
 
 import { Button } from 'antd'
-import { LAYOUT_TYPE } from 'otter-pro'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -47,9 +46,8 @@ const mapDispatchToProps = (dispatch) => ({
 @connect(mapStateToProps, mapDispatchToProps)
 class SetDetail extends Component<IProps, IState> {
   componentDidMount() {
-    const { match, getSetDetail, setMainLayout } = this.props
+    const { match, getSetDetail } = this.props
     getSetDetail(match.params.id)
-    setMainLayout(LAYOUT_TYPE.FULL)
   }
   render() {
     const { route, match, activeRoute } = this.props

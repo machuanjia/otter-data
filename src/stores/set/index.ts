@@ -66,7 +66,7 @@ export const setSlice = createSlice({
       })
       .addCase(SetService.getSetDetail.fulfilled, (state, action) => {
         state.detail = action.payload
-        state.status = STATUS.LOADING
+        state.status = STATUS.IDLE
       })
   },
 })

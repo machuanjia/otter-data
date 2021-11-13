@@ -40,7 +40,7 @@ const List = () => {
     }
   }, [list])
   const touchSet = (n)=>{
-    history.push(`/set/${n.id}`)
+    history.push(`/set/${n.id}/version`)
   }
   return (
     <>

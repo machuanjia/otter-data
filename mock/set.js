@@ -59,5 +59,14 @@ const proxy = {
       ],
     },
   },
+  'GET /api/v1/sets/:id': {
+    code: 200,
+    data: {
+      id: '11',
+      name: '身份证拍摄扫描',
+      status: 1,
+      description: '这个数据集是将身份证数据集打印后手动拍照构造',
+    },
+  },
 }
 module.exports = proxy
