@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:03:39
- * @LastEditTime: 2021-11-12 18:11:03
+ * @LastEditTime: 2021-11-14 14:51:05
  * @FilePath: /otter-data/src/routes/index.tsx
  * @Description:
  */
@@ -14,13 +14,13 @@ import { Route, Switch } from 'react-router-dom'
 
 import { ProcessLoading } from '@/components'
 import type { IRoute } from '@/interfaces'
-import { store } from '@/stores'
+import useAppModel from '@/models/app'
 
 import staticRoutes from './static'
 
-export const generateRoutes = (routes: any, extraProps = {}, switchProps = {}) => {
+export const generateRoutes = (routes: any, permissions = []) => {
   return routes ? (
-    <Switch {...switchProps}>
+    <Switch>
       {routes.map((route: any, i) => (
         <Route
           key={route.meta.key || i}
@@ -28,11 +28,8 @@ export const generateRoutes = (routes: any, extraProps = {}, switchProps = {}) =
           exact={route.exact}
           strict={route.strict}
           render={(props) => {
-            if (
-              !route.meta.permission ||
-              store.getState().app.permissions.includes(route.meta.permission)
-            ) {
-              return <route.component {...props} {...extraProps} route={route} />
+            if (!route.meta.permission || permissions.includes(route.meta.permission)) {
+              return <route.component {...props} route={route} />
             }
             return <Route component={NoPermission} />
           }}
@@ -76,7 +73,8 @@ export const getPermissionsRouters = (menus, permissions, parentPath = '') => {
 }
 
 export const RouteViewer = ({ routers }) => {
-  return <>{generateRoutes(routers)}</>
+  const { permissions } = useAppModel()
+  return <>{generateRoutes(routers, permissions)}</>
 }
 
 export const StaticRoutes = () => {

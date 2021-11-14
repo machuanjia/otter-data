@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:43:46
- * @LastEditTime: 2021-11-09 14:23:28
+ * @LastEditTime: 2021-11-14 15:20:59
  * @FilePath: /otter-data/src/index.tsx
  * @Description:
  */
@@ -9,7 +9,6 @@ import React from 'react'
 
 import { ConfigProvider } from 'antd'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import { getAntdLocal } from '@/i18n'
@@ -18,7 +17,6 @@ import '@/styles/index.less'
 import './public-path'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import { store } from './stores'
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
@@ -30,19 +28,17 @@ function render(props) {
   // @ts-ignore
   const baseName = window.__POWERED_BY_QIANKUN__ ? '/data' : '/'
   ReactDOM.render(
-    <Provider store={store}>
-      <ConfigProvider
-        locale={getAntdLocal()}
-        componentSize="middle"
-        getPopupContainer={() => {
-          return container ? container.querySelector('#root') : document.body
-        }}
-      >
-        <Router basename={baseName}>
-          <App />
-        </Router>
-      </ConfigProvider>
-    </Provider>,
+    <ConfigProvider
+      locale={getAntdLocal()}
+      componentSize="middle"
+      getPopupContainer={() => {
+        return container ? container.querySelector('#root') : document.body
+      }}
+    >
+      <Router basename={baseName}>
+        <App />
+      </Router>
+    </ConfigProvider>,
     container ? container.querySelector('#root') : document.querySelector('#root'),
   )
 }
