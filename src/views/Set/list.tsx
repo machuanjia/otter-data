@@ -5,50 +5,33 @@
  * @FilePath: /otter-data/src/views/Set/list.tsx
  * @Description:
  */
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
 import { PlusOutlined } from '@ant-design/icons'
 import { Button, Input } from 'antd'
 import { ContentLayout } from 'otter-pro'
-import { connect } from 'react-redux'
 
-import { NormalLayoutDecorator } from '@/decorators'
-import { setIsCollectionVisible } from '@/stores'
+import NormalLayout from '@/layouts/NormalLayout'
 
 import { List, SetCollection } from './components'
-
-type IProps = {}
-type IState = {
-  isCollectionVisible: boolean
-}
+import { SetListContext } from './context'
 
 const { Search } = Input
-const mapStateToProps = (state) => ({
-  status: state.app.status,
-})
-const mapDispatchToProps = (dispatch) => ({
-  setIsCollectionVisible: (payload) => dispatch(setIsCollectionVisible(payload)),
-})
-// @ts-ignore
-@NormalLayoutDecorator()
-// @ts-ignore
-@connect(mapStateToProps, mapDispatchToProps)
-class SetList extends Component<IProps, IState> {
-  onSearch() {}
-  render() {
-    // @ts-ignore
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-    const { setIsCollectionVisible } = this.props
-    return (
-      <>
+
+const SetList = () => {
+  const [isCollectionVisible, setIsCollectionVisible] = useState(false)
+  const onSearch = () => {
+  }
+
+  return (
+    <NormalLayout>
+      <SetListContext.Provider value={{ isCollectionVisible, setIsCollectionVisible }}>
         <ContentLayout
           hLeft={
             <Search
               className="search"
               placeholder="请您输入..."
-              onSearch={() => {
-                this.onSearch()
-              }}
+              onSearch={onSearch}
               enterButton
             />
           }
@@ -67,8 +50,8 @@ class SetList extends Component<IProps, IState> {
           <List />
         </ContentLayout>
         <SetCollection />
-      </>
-    )
-  }
+      </SetListContext.Provider>
+    </NormalLayout>
+  )
 }
 export default SetList

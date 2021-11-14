@@ -22,7 +22,6 @@ export interface SetState {
   total: number
   pageSize: number
   pageIndex: number
-  isCollectionVisible: boolean
   detail: ISet
 }
 
@@ -44,9 +43,6 @@ export const setSlice = createSlice({
     detail: null,
   }),
   reducers: {
-    setIsCollectionVisible: (state, action) => {
-      state.isCollectionVisible = action.payload
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -71,7 +67,7 @@ export const setSlice = createSlice({
   },
 })
 
-export const { setIsCollectionVisible } = setSlice.actions
+export const { } = setSlice.actions
 export const setsSelectors = setsAdapter.getSelectors<RootState>((state) => state.set)
 export const selectSetStatus = (state: RootState) => state.set.status
 export const selectSetList = (state: RootState) => state.set.entities

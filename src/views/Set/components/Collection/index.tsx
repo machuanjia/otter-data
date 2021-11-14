@@ -5,27 +5,24 @@
  * @FilePath: /otter-data/src/views/Set/components/Collection/index.tsx
  * @Description:
  */
+import { useContext } from 'react'
+
 import { FormItem, FormLayout, Input, FormButtonGroup, Submit } from '@formily/antd'
 import { createForm } from '@formily/core'
 import { FormProvider, Field } from '@formily/react'
 import { Button } from 'antd'
 
 import { CreateModal } from '@/components'
-import {
-  selectIsCollectionVisible,
-  setIsCollectionVisible,
-  useAppDispatch,
-  useAppSelector,
-} from '@/stores'
+
+import { SetListContext } from '../../context'
 
 const { TextArea } = Input
 const form = createForm()
 
 const SetCollection = () => {
-  const isCollectionVisible = useAppSelector(selectIsCollectionVisible)
-  const dispatch = useAppDispatch()
+  const { isCollectionVisible, setIsCollectionVisible } = useContext(SetListContext);
   const handleClose = () => {
-    dispatch(setIsCollectionVisible(false))
+    setIsCollectionVisible(false)
   }
   return (
     <CreateModal isVisible={isCollectionVisible} onClose={handleClose}>

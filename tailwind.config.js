@@ -40,6 +40,7 @@ module.exports = {
     },
     borderColor: {
       divider: 'var(--color-divider)',
+      primary: 'var(--color-divider-primary)'
     },
   },
   variants: {
