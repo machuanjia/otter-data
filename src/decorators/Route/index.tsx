@@ -8,11 +8,10 @@
 
 import React, { Component } from 'react'
 
-import { LAYOUT_TYPE } from 'otter-pro'
 import { connect } from 'react-redux'
 
 import type { IRoute } from '@/models'
-import { setCurrentRoute, setBread, setLayout } from '@/stores/app'
+import { setCurrentRoute, setBread } from '@/stores/app'
 
 type IProps = {
   permissions: string[]
@@ -28,8 +27,7 @@ export const RouteDecorator = () => (WrappedComponent) => {
   })
   const mapDispatchToProps = (dispatch) => ({
     setCurrentRoute: (route) => dispatch(setCurrentRoute(route)),
-    setBread: (bread) => dispatch(setBread(bread)),
-    setLayout: (payload) => dispatch(setLayout(payload)),
+    setBread: (bread) => dispatch(setBread(bread))
   })
   // @ts-ignore
   @connect(mapStateToProps, mapDispatchToProps)
@@ -107,13 +105,11 @@ export const RouteDecorator = () => (WrappedComponent) => {
     componentDidMount() {
       // @ts-ignore
       // eslint-disable-next-line @typescript-eslint/no-shadow
-      const { location, history, setLayout } = this.props
+      const { location, history } = this.props
       history.listen((args) => {
         this.setRoute(args.pathname)
-        setLayout(LAYOUT_TYPE.NORMAL)
       })
       this.setRoute(location.pathname)
-      setLayout(LAYOUT_TYPE.NORMAL)
     }
     render() {
       return (

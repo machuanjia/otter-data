@@ -26,7 +26,6 @@ export interface AppState {
     name: string
     path: string
   }[]
-  layout: string
 }
 
 const initialState: AppState = {
@@ -35,8 +34,7 @@ const initialState: AppState = {
   status: STATUS.LOADING,
   routes: [],
   currentRoute: null,
-  bread: [],
-  layout: 'normal',
+  bread: []
 }
 
 export const appSlice = createSlice({
@@ -51,10 +49,7 @@ export const appSlice = createSlice({
     },
     setBread: (state, action) => {
       state.bread = action.payload
-    },
-    setLayout: (state, action) => {
-      state.layout = action.payload
-    },
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -69,11 +64,10 @@ export const appSlice = createSlice({
       })
   },
 })
-export const { setRoutes, setCurrentRoute, setBread, setLayout } = appSlice.actions
+export const { setRoutes, setCurrentRoute, setBread } = appSlice.actions
 export const selectAppPermissions = (state: RootState) => state.app.permissions
 export const selectAppRoutes = (state: RootState) => state.app.routes
 export const selectAppCurrentRoute = (state: RootState) => state.app.currentRoute
 export const selectAppBread = (state: RootState) => state.app.bread
-export const selectAppLayout = (state: RootState) => state.app.layout
 export const selectAppStatus = (state: RootState) => state.app.status
 export default appSlice.reducer

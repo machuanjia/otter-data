@@ -10,7 +10,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import Bread from '@/layouts/Bread'
-import { store } from '@/stores'
 
 import styles from './index.module.less'
 
@@ -22,7 +21,6 @@ type IState = {}
 
 export const NormalLayoutDecorator = () => (WrappedComponent) => {
   const mapStateToProps = () => ({
-    layout:store.getState().app.layout
   })
   const mapDispatchToProps = () => ({})
   // @ts-ignore
