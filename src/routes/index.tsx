@@ -13,7 +13,7 @@ import { NotFond, NoPermission } from 'otter-pro'
 import { Route, Switch } from 'react-router-dom'
 
 import { ProcessLoading } from '@/components'
-import type { IRoute } from '@/models'
+import type { IRoute } from '@/interfaces'
 import { store } from '@/stores'
 
 import staticRoutes from './static'

@@ -10,7 +10,7 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
-import type { IRoute } from '@/models'
+import type { IRoute } from '@/interfaces'
 import { setCurrentRoute, setBread } from '@/stores/app'
 
 type IProps = {

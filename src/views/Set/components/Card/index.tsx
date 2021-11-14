@@ -10,7 +10,7 @@ import { memo } from 'react'
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons'
 import { Card, Avatar } from 'antd'
 
-import type { ISet } from '@/models'
+import type { ISet } from '@/interfaces'
 
 type IProps = {
   entity: ISet

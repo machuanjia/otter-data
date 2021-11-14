@@ -9,7 +9,7 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit'
 import { STATUS } from 'otter-pro'
 
-import type { ISet } from '@/models'
+import type { ISet } from '@/interfaces'
 
 import SetService from './set.service'
 
