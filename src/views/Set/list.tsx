@@ -1,17 +1,19 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 13:57:38
- * @LastEditTime: 2021-11-12 08:54:14
+ * @LastEditTime: 2021-11-15 11:38:55
  * @FilePath: /otter-data/src/views/Set/list.tsx
  * @Description:
  */
 import React, { useState } from 'react'
 
 import { PlusOutlined } from '@ant-design/icons'
+import { useMount } from 'ahooks'
 import { Button, Input } from 'antd'
 import { ContentLayout } from 'otter-pro'
 
 import NormalLayout from '@/layouts/NormalLayout'
+import { useSetModel } from '@/models'
 
 import { List, SetCollection } from './components'
 import { SetListContext } from './context'
@@ -20,8 +22,12 @@ const { Search } = Input
 
 const SetList = () => {
   const [isCollectionVisible, setIsCollectionVisible] = useState(false)
+  const { getSets } = useSetModel()
   const onSearch = () => {
   }
+  useMount(()=>{
+    getSets()
+  })
 
   return (
     <NormalLayout>

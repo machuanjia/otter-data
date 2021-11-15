@@ -1,8 +1,8 @@
 /*
  * @Author: D.Y.M
- * @Date: 2021-11-08 10:54:09
- * @LastEditTime: 2021-11-15 09:48:55
- * @FilePath: /otter-data/src/apis/set.ts
+ * @Date: 2021-11-15 09:48:53
+ * @LastEditTime: 2021-11-15 09:48:54
+ * @FilePath: /otter-data/src/apis/remark.ts
  * @Description:
  */
 import { request } from '@/utils'
@@ -11,9 +11,9 @@ import { request } from '@/utils'
  * @param {*} params
  * @return {*}
  */
-export const getSets = (params = {}) => {
+export const getRemarks = (params = {}) => {
   return request({
-    url: '/sets',
+    url: '/remarks',
     method: 'get',
     params,
   })
@@ -24,9 +24,9 @@ export const getSets = (params = {}) => {
  * @param {*} params
  * @return {*}
  */
-export const getSetsDetail = (id: string, params = {}) => {
+export const getRemarksDetail = (id: string, params = {}) => {
   return request({
-    url: `/sets/${id}`,
+    url: `/remarks/${id}`,
     method: 'get',
     params,
   })

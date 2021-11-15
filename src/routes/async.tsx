@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 16:12:45
- * @LastEditTime: 2021-11-14 15:23:06
+ * @LastEditTime: 2021-11-15 11:44:12
  * @FilePath: /otter-data/src/routes/async.tsx
  * @Description:
  */
@@ -14,7 +14,7 @@ const routes = [
     path: '/lake',
     meta: {
       key: 'Lake',
-      name: i18n.t('lake'),
+      name: i18n.t('routes.lake'),
       icon: 'data',
       permission: 'dataLake*',
     },
@@ -36,7 +36,7 @@ const routes = [
     path: '/set',
     meta: {
       key: 'Set',
-      name: i18n.t('set'),
+      name: i18n.t('routes.set'),
       icon: 'data',
       permission: 'dataSet*',
     },
@@ -46,7 +46,7 @@ const routes = [
         path: '/index',
         meta: {
           key: 'SetList',
-          name: i18n.t('set'),
+          name: i18n.t('routes.set'),
           icon: 'data',
           permission: 'dataSet*',
         },
@@ -56,7 +56,7 @@ const routes = [
         path: '/:id',
         meta: {
           key: 'SetDetail',
-          name: i18n.t('set'),
+          name: i18n.t('routes.set'),
           icon: 'data',
           permission: 'dataSet*',
           isFullPath: true,
@@ -67,7 +67,7 @@ const routes = [
             path: '/version',
             meta: {
               key: 'SetDetailVersion',
-              name: i18n.t('set'),
+              name: i18n.t('routes.set'),
               icon: 'data',
               permission: 'dataSet*',
               isFullPath: true,
@@ -78,7 +78,7 @@ const routes = [
             path: '/basic',
             meta: {
               key: 'SetDetailBasic',
-              name: i18n.t('set'),
+              name: i18n.t('routes.set'),
               icon: 'data',
               permission: 'dataSet*',
               isFullPath: true,
@@ -93,7 +93,7 @@ const routes = [
     path: '/remark',
     meta: {
       key: 'Remark',
-      name: i18n.t('remark'),
+      name: i18n.t('routes.remark'),
       icon: 'data',
       permission: 'dataRemark*',
     },

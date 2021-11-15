@@ -1,20 +1,18 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-20 13:57:38
- * @LastEditTime: 2021-11-12 08:52:25
+ * @LastEditTime: 2021-11-15 09:39:36
  * @FilePath: /otter-data/src/views/Remark/index.tsx
  * @Description:
  */
-import React, { Component } from 'react'
+import React from 'react'
 
-import { ContentLayout } from 'otter-pro'
-class Remark extends Component {
-  render() {
-    return (
-      <ContentLayout>
-        Remark
-      </ContentLayout>
-    )
-  }
+import SetList from './list'
+
+const Remark = () => {
+  return (
+    <SetList/>
+  )
 }
+
 export default Remark

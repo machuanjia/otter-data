@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-11-08 10:49:24
- * @LastEditTime: 2021-11-14 15:12:30
+ * @LastEditTime: 2021-11-15 11:39:55
  * @FilePath: /otter-data/src/views/Set/components/List/index.tsx
  * @Description:
  */
@@ -12,19 +12,16 @@ import { map, range } from 'lodash'
 import { PartLoading } from 'otter-pro'
 import { useHistory } from 'react-router-dom'
 
-import { useSet } from '@/models'
+import { useSetModel } from '@/models'
 
 import Card from '../Card'
 import styles from './index.module.less'
 
 const List = () => {
-  const { getSets, list, loading } = useSet()
+  const { list, loading } = useSetModel()
   const ref = useRef(null)
   const [empty, setEmpty] = useState(0)
   const history = useHistory()
-  useEffect(() => {
-    getSets()
-  }, [])
   useEffect(() => {
     const timer = setTimeout(() => {
       if (Object.keys(list).length > 0) {

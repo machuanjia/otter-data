@@ -1,8 +1,8 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-10-19 16:03:22
- * @LastEditTime: 2021-10-21 15:36:25
- * @FilePath: /otter/src/i18n/index.ts
+ * @LastEditTime: 2021-11-15 11:19:09
+ * @FilePath: /otter-data/src/i18n/index.ts
  * @Description:
  */
 import enUS from 'antd/lib/locale/en_US'

@@ -1,7 +1,21 @@
 {
-  "home": "首页",
-  "welcome": "欢迎来首页",
-  "lake":"数据湖",
-  "set":"数据集",
-  "remark":"标注任务"
+  "routes": {
+    "lake": "数据湖",
+    "set": "数据集",
+    "remark": "标注任务"
+  },
+  "common": {
+    "actions": {
+      "create": "新建",
+      "update": "更新",
+      "delete": "删除"
+    },
+    "list": {
+      "name": "名称",
+      "status": "状态",
+      "description": "描述",
+      "actions": "操作"
+    }
+  },
+  "set": {}
 }

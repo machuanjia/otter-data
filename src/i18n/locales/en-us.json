@@ -1,7 +1,22 @@
 {
-  "home": "Home",
-  "welcome": "Welcome To Home",
-  "lake":"数据湖",
-  "set":"数据集",
-  "remark":"标注任务"
+  "routes":{
+    "lake":"Lake",
+    "set":"Set",
+    "remark":"Remark"
+  },
+  "common":{
+    "actions":{
+      "create":"Create",
+      "update":"Update",
+      "delete":"Delete"
+    },
+    "list":{
+      "name":"Name",
+      "status": "Status",
+      "description":"Description",
+      "actions": "Actions"
+    }
+  },
+  "set":{
+  }
 }

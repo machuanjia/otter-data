@@ -1,7 +1,7 @@
 /*
  * @Author: D.Y.M
  * @Date: 2021-11-11 08:51:33
- * @LastEditTime: 2021-11-14 15:18:28
+ * @LastEditTime: 2021-11-15 11:13:49
  * @FilePath: /otter-data/src/views/Set/detail.tsx
  * @Description:
  */
@@ -12,14 +12,14 @@ import { Button } from 'antd'
 import { Link, useParams } from 'react-router-dom'
 
 import Bread from '@/layouts/Bread'
-import { useSet } from '@/models'
+import { useSetModel } from '@/models'
 import { RouteViewer } from '@/routes'
 
 import { SetDetailContext } from './context'
 
 const SetDetail = ({ route, match }) => {
   const { id } = useParams()
-  const { getSetDetail } = useSet()
+  const { getSetDetail } = useSetModel()
   useMount(() => {
     getSetDetail(id)
   })
